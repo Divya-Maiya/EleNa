@@ -9,12 +9,6 @@ Map related utils for oxmnx library
 def get_coordinates(address):
     return ox.geocode(address)
 
-
-def get_map():
-    graph = None
-    # save pkl file
-
-
 """
 get_map(): Saves the map of a particular city
 Inputs: 
