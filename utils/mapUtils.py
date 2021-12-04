@@ -2,7 +2,7 @@ import osmnx as ox
 import pickle as pkl
 
 
-def get_coordinates(graph, address):
+def get_coordinates(address):
     return ox.geocode(address)
 
 
@@ -19,7 +19,7 @@ def load_map():
 
 def get_node_from_address(graph, address):
     try:
-        latlng = get_coordinates(graph, address)
+        latlng = get_coordinates(address)
         node, dist = ox.get_nearest_node(graph, latlng, return_dist=True)
         if dist > 10000:
             raise Exception("{} is not currently included in Routing Capabilities".format(address))
@@ -49,6 +49,7 @@ def convert_path(graph, path):
             grade = max(0, edge['grade'])
         final_path.append((x, y))
         lengths_and_elevations.append({'length': length, 'elevation': elevation, 'grade': grade})
+
     # Add Last Node
     last_node = graph.nodes[next_node]
     final_path.append((last_node['x'], last_node['y']))
