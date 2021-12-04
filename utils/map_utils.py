@@ -6,13 +6,28 @@ def get_coordinates(address):
     return ox.geocode(address)
 
 
-def get_map(city, state, country, apiKey):
+def get_map():
     graph = None
     # save pkl file
 
 
+def get_map(city, state, country, api_key):
+    # downloading local map
+    query = {'city': city, 'state': state, 'country': country}
+    graph_orig = ox.graph_from_place(query, network_type='drive')
+
+    # adding elevation data from GoogleMaps
+    graph_orig = ox.elevation.add_node_elevations_google(graph_orig, api_key=api_key)
+    graph_orig = ox.add_edge_grades(graph_orig)
+    pkl.dump(graph_orig, open("data/graph.pkl", "wb"))
+
+    # projecting map on to 2D space
+    graph_projection = ox.project_graph(graph_orig)
+    pkl.dump(graph_projection, open("graph_projected.pkl", "wb"))
+
+
 def load_map():
-    with open("data/boston.pkl", 'rb') as infile:
+    with open("data/graph.pkl", 'rb') as infile:
         graph = pkl.load(infile)
         return graph
 

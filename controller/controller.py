@@ -1,7 +1,7 @@
 from algorithm.aStar import astar
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
-from utils.mapUtils import convert_path
+from utils.map_utils import convert_path
 
 class Controller(object):
 
