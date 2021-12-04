@@ -1,6 +1,10 @@
 import osmnx as ox
 import pickle as pkl
 
+"""
+Map related utils for oxmnx library
+"""
+
 
 def get_coordinates(address):
     return ox.geocode(address)
@@ -9,6 +13,18 @@ def get_coordinates(address):
 def get_map():
     graph = None
     # save pkl file
+
+
+"""
+get_map(): Saves the map of a particular city
+Inputs: 
+  - city: City for the map
+  - state: State
+  - country: Country 
+  - api_key: Google API Key
+Output: 
+    None
+"""
 
 
 def get_map(city, state, country, api_key):
@@ -24,6 +40,15 @@ def get_map(city, state, country, api_key):
     # projecting map on to 2D space
     graph_projection = ox.project_graph(graph_orig)
     pkl.dump(graph_projection, open("graph_projected.pkl", "wb"))
+
+
+"""
+load_map(): Loads the map of a particular city saved by get_map()
+Inputs: 
+  None
+Output: 
+  graph object
+"""
 
 
 def load_map():

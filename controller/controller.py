@@ -3,6 +3,11 @@ from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
 from utils.map_utils import convert_path
 
+"""
+Controller class
+"""
+
+
 class Controller(object):
 
     def _init_(self):
@@ -25,8 +30,3 @@ class Controller(object):
 
         path, path_data = convert_path(graph, path)
         return {'path': path, 'path_data': path_data}
-
-
-
-
-

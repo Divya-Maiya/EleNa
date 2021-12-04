@@ -1,3 +1,8 @@
+"""
+Defining the model
+"""
+
+
 class Model(object):
 
     def _init_(self):
