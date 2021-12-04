@@ -4,7 +4,7 @@ class Model(object):
         # self.modes = ['minimize', 'maximize']
         self.source = None
         self.destination = None
-        self.overhead = None
+        self.limit = None
         self.mode = None
         # self.graph_projection = None
         self.algorithm = None
@@ -22,8 +22,8 @@ class Model(object):
     def set_mode(self, mode):
         self.mode = mode
 
-    def set_overhead(self, o):
-        self.overhead = o
+    def set_limit(self, o):
+        self.limit = o
 
     def set_algorithm(self, algorithm):
         self.algorithm = algorithm
@@ -51,8 +51,8 @@ class Model(object):
     def get_mode(self):
         return self.mode
 
-    def get_overhead(self):
-        return self.overhead
+    def get_limit(self):
+        return self.limit
 
     def get_algorithm(self):
         return self.algorithm
