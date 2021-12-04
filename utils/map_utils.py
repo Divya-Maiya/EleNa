@@ -39,7 +39,7 @@ def get_map(city, state, country, api_key):
 
     # projecting map on to 2D space
     graph_projection = ox.project_graph(graph_orig)
-    pkl.dump(graph_projection, open("graph_projected.pkl", "wb"))
+    pkl.dump(graph_projection, open("data/graph_projected.pkl", "wb"))
 
 
 """
