@@ -1,4 +1,4 @@
-from algorithm.aStar import astar
+from algorithm.astar import astar
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
 from utils.map_utils import convert_path
@@ -18,13 +18,13 @@ class Controller(object):
 
     def get_route(self, graph, start_node, dest_node, algorithm='AStar', limit=0, mode='min'):
         if algorithm == 'AStar':
-            path = astar(graph, limit, mode)
+            path = astar(graph, start_node, dest_node, limit, mode)
 
         elif algorithm == 'Dijkstra':
-            path = dijkstra(graph, limit, mode)
+            path = dijkstra(graph, start_node, dest_node, limit, mode)
 
         elif algorithm == 'BFS':
-            path = bfs(graph, limit, mode)
+            path = bfs(graph, start_node, dest_node, limit, mode)
 
         print(path)
 
