@@ -17,6 +17,7 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
     queue = []
 
     if start_node not in graph:
+        print("Start node is not in the map. Please restart with the correct start node")
         return []  # Figure out way to handle exceptions properly
 
     seen[start_node] = 0

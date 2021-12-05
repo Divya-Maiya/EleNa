@@ -24,11 +24,12 @@ Output:
 
 def get_map(city, state, country, api_key):
     # downloading local map
-    query = {'city': city, 'state': state, 'country': country}
+    # query = {'city': city, 'state': state, 'country': country}
+    query = {'state': state, 'country': country}
     graph_orig = ox.graph_from_place(query, network_type='drive')
 
     # adding elevation data from GoogleMaps
-    graph_orig = ox.elevation.add_node_elevations_google(graph_orig, api_key=api_key)
+    graph_orig = ox.add_node_elevations_google(graph_orig, api_key=api_key)
     graph_orig = ox.add_edge_grades(graph_orig)
     pkl.dump(graph_orig, open("data/graph.pkl", "wb"))
 
@@ -48,15 +49,17 @@ Output:
 
 def load_map():
     with open("data/graph.pkl", 'rb') as infile:
-        graph = pkl.load(infile)
-        return graph
+        graph_orig = pkl.load(infile)
+        # graph_orig = ox.add_node_elevations_google(graph_orig, api_key="AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o")
+        # graph_orig = ox.add_edge_grades(graph_orig)
+        return graph_orig
 
 
 def get_node_from_address(graph, address):
     try:
-        latlng = get_coordinates(address)
-        node, dist = ox.get_nearest_node(graph, latlng, return_dist=True)
-        if dist > 10000:
+        lat, lng = get_coordinates(address)
+        node, dist = ox.nearest_nodes(graph, lng, lat, return_dist=True)
+        if dist/10000 > 10000:
             raise Exception("{} is not currently included in Routing Capabilities".format(address))
         return node
     except:
@@ -67,7 +70,9 @@ def get_node_from_address(graph, address):
 def convert_path(graph, path):
     final_path = []
     lengths_and_elevations = []
+    final_nodes = []
 
+    # next_node = None
     for i in range(len(path) - 1):
         node_id = path[i]
         next_node = path[i + 1]
