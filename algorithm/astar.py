@@ -1,5 +1,4 @@
 import heapq
-import map_utils
 import networkx as nx
 from itertools import count
 
@@ -13,7 +12,7 @@ def astar(graph, start_node, dest_node, mode):
 
     successor_graph = graph._succ if graph.is_directed() else graph._adj
 
-    weight = graph_utils.shortest_path_optimizer(graph, mode)
+    weight = shortest_path_optimizer(graph, mode)
     c = count()
     queue = [(0, next(c), start_node, 0, None)]
 
