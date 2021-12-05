@@ -1,6 +1,6 @@
-from backend.algorithm.astar import astar
-from backend.algorithm.dijkstra import dijkstra
-from backend.algorithm.bfs import bfs
+from backend.algorithm.astar import AStar
+from backend.algorithm.dijkstra import Dijkstra
+from backend.algorithm.bfs import BFS
 from backend.utils.map_utils import convert_path, get_node_from_address
 import osmnx as ox
 
@@ -20,13 +20,16 @@ class Controller(object):
     def get_route(self, graph, source_node, dest_node, algorithm='AStar', limit=0, mode='min', plot_local=0):
         path = ""
         if algorithm == 'AStar':
-            path = astar(graph, source_node, dest_node, limit, mode)
+            astar = AStar()
+            path = astar.astar(graph, source_node, dest_node, limit, mode)
 
         elif algorithm == 'Dijkstra':
-            path = dijkstra(graph, source_node, dest_node, limit, mode)
+            dijkstra = Dijkstra()
+            path = dijkstra.dijkstra(graph, source_node, dest_node, limit, mode)
 
         elif algorithm == 'BFS':
-            path = bfs(graph, source_node, dest_node, limit, mode)
+            bfs = BFS()
+            path = bfs.bfs(graph, source_node, dest_node, limit, mode)
 
         final_path, path_data = convert_path(graph, path)
 
