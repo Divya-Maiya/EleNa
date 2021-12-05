@@ -1,59 +1,66 @@
 import heapq
+from abc import ABC
 from itertools import count
+
+from backend.algorithm.algorithm import Algorithm
 from backend.utils.graph_utils import *
 
+"""
+To get the shortest path using the A* Algorithm
+"""
 
-def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
-    push = heapq.heappush
-    pop = heapq.heappop
 
-    successor_graph = graph._succ if graph.is_directed() else graph._adj
+class AStar(Algorithm, ABC):
+    def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
+        push = heapq.heappush
+        pop = heapq.heappop
 
-    weight = shortest_path_optimizer(graph, edge_weight)
-    c = count()
-    queue = [(0, next(c), start_node, 0, None)]
+        successor_graph = graph._succ if graph.is_directed() else graph._adj
 
-    enqueued = {}
-    explored = {}
+        weight = shortest_path_optimizer(graph, edge_weight)
+        c = count()
+        queue = [(0, next(c), start_node, 0, None)]
 
-    while queue:
-        _, __, curnode, dist, parent = pop(queue)
+        enqueued = {}
+        explored = {}
 
-        if curnode == dest_node:
-            path = [curnode]
-            node = parent
-            while node is not None:
-                path.append(node)
-                node = explored[node]
-            path.reverse()
-            return path
+        while queue:
+            _, __, curnode, dist, parent = pop(queue)
 
-        if curnode in explored:
-            if explored[curnode] is None:
-                continue
+            if curnode == dest_node:
+                path = [curnode]
+                node = parent
+                while node is not None:
+                    path.append(node)
+                    node = explored[node]
+                path.reverse()
+                return path
 
-            qcost, h = enqueued[curnode]
-            if qcost < dist:
-                continue
-
-        explored[curnode] = parent
-
-        for neighbor, w in successor_graph[curnode].items():
-            ncost = dist + weight(curnode, neighbor, w)
-            if neighbor in enqueued:
-                qcost, h = enqueued[neighbor]
-                if qcost <= ncost:
+            if curnode in explored:
+                if explored[curnode] is None:
                     continue
-            else:
-                h = get_l1_distance(graph, neighbor, dest_node)
-            enqueued[neighbor] = ncost, h
-            push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
 
+                qcost, h = enqueued[curnode]
+                if qcost < dist:
+                    continue
 
-def astar(graph, start_node, dest_node, limit, mode):
-    if mode == "max":
-        return maximum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
-    elif mode == "min":
-        return minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
-    else:
-        return get_shortest_path(graph, start_node, dest_node)
+            explored[curnode] = parent
+
+            for neighbor, w in successor_graph[curnode].items():
+                ncost = dist + weight(curnode, neighbor, w)
+                if neighbor in enqueued:
+                    qcost, h = enqueued[neighbor]
+                    if qcost <= ncost:
+                        continue
+                else:
+                    h = get_l1_distance(graph, neighbor, dest_node)
+                enqueued[neighbor] = ncost, h
+                push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
+
+    def astar(self, graph, start_node, dest_node, limit, mode):
+        if mode == "max":
+            return maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
+        elif mode == "min":
+            return minimum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
+        else:
+            return self.get_shortest_path(graph, start_node, dest_node)
