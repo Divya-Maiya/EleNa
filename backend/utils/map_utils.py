@@ -24,7 +24,9 @@ Output:
 """
 
 
-def get_map(city, state, country, api_key):
+def get_map(city, state, country, api_key, file_name):
+    print(os.getcwd())
+    os.chdir("backend")
     # downloading local map
     query = {'city': city, 'state': state, 'country': country}
     # query = {'state': state, 'country': country}
@@ -33,7 +35,7 @@ def get_map(city, state, country, api_key):
     # adding elevation data from GoogleMaps
     graph_orig = ox.add_node_elevations_google(graph_orig, api_key=api_key)
     graph_orig = ox.add_edge_grades(graph_orig)
-    pkl.dump(graph_orig, open("data/graph.pkl", "wb"))
+    pkl.dump(graph_orig, open(file_name, "wb"))
 
     # projecting map on to 2D space
     graph_projection = ox.project_graph(graph_orig)
@@ -49,10 +51,11 @@ Output:
 """
 
 
-def load_map():
-    os.chdir("backend")
+def load_map(filepath, changeDir=0):
+    if changeDir == 1:
+        os.chdir("backend")
     print(os.getcwd())
-    with open("data/graph.pkl", 'rb') as infile:
+    with open(filepath, 'rb') as infile:
         graph_orig = pkl.load(infile)
         # graph_orig = ox.add_node_elevations_google(graph_orig, api_key="AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o")
         # graph_orig = ox.add_edge_grades(graph_orig)

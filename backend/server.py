@@ -12,8 +12,7 @@ from utils import map_utils
 
 app = Flask(__name__)
 # graphs = {}
-print(os.getcwd())
-graph = map_utils.load_map()
+# print(os.getcwd())
 
 webbrowser.open('http://localhost:5000', new=2)
 
@@ -30,14 +29,10 @@ def route():
 
     mode = data['mode']
     algo = data['algorithm']
+    city = data['city']
 
-    # Get Lat Long of Address from Nominatim Geocoding API
-    # try:
-    #     start_node = get_node_from_address(graph, data['start'])
-    #     dest_node = get_node_from_address(graph, data['dest'])
-    # except Exception as e:
-    #     print(e)
-    #     return {'error': str(e)}, 501
+    map_file = "data/graph_" + city + ".pkl"
+    graph = map_utils.load_map(map_file)
 
     limit = float(data['limit']) / 100
 

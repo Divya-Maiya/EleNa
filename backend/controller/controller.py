@@ -17,7 +17,7 @@ class Controller(object):
     def set_model(self, model):
         self.model = model
 
-    def get_route(self, graph, source_node, dest_node, algorithm='AStar', limit=0, mode='min'):
+    def get_route(self, graph, source_node, dest_node, algorithm='AStar', limit=0, mode='min', plot_local=0):
         path = ""
         if algorithm == 'AStar':
             path = astar(graph, source_node, dest_node, limit, mode)
@@ -32,10 +32,13 @@ class Controller(object):
 
         # print(path)
         print(path_data)
-        ox.plot_graph_route(graph, path)
+
+        if plot_local == 1:
+            ox.plot_graph_route(graph, path)
+
         return {'path': final_path, 'path_data': path_data}
 
-    def handle_request(self, graph):
+    def handle_request(self, graph, plot_local=0):
         # #Load map
         # graph = load_map()
         #
@@ -47,4 +50,4 @@ class Controller(object):
         return self.get_route(graph, source_node, dest_node,
                               self.model.get_algorithm(),
                               self.model.get_limit(),
-                              self.model.get_mode())
+                              self.model.get_mode(), plot_local)
