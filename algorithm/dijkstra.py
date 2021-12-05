@@ -3,16 +3,21 @@ from utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
 import heapq
 from itertools import count
 
+"""
+To get the shortest path using Dijkstra's algorithm
+"""
+
 
 def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
-    weight = shortest_path_optimizer(graph, edge_weight)
+    optimizer_func = shortest_path_optimizer(graph, edge_weight)
     paths = {start_node: [start_node]}
-    successor_graph = graph._succ if graph.is_directed() else graph._adj
+    new_graph = graph._succ if graph.is_directed() else graph._adj
 
     push = heapq.heappush
     pop = heapq.heappop
-    dist = {}  # Dictionary of Final distances
-    seen = {}
+    # Dictionary for final distances
+    distances = {}
+    visited = {}
     c = count()
     queue = []
 
@@ -20,26 +25,27 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
         print("Start node is not in the map. Please restart with the correct start node")
         return []  # Figure out way to handle exceptions properly
 
-    seen[start_node] = 0
+    visited[start_node] = 0
     push(queue, (0, next(c), start_node))
     while queue:
         d, _, v = pop(queue)
-        if v in dist:
+        if v in distances:
             continue  # already searched this node
-        dist[v] = d
+        distances[v] = d
         if v == dest_node:
             break
-        for u, e in successor_graph[v].items():
-            cost = weight(v, u, e) + 1
+        for u, e in new_graph[v].items():
+            cost = optimizer_func(v, u, e) + 1
             if cost is None:
                 continue
 
-            vu_dist = dist[v] + cost
-            if u in dist:
-                if vu_dist < dist[u]:
-                    pass  # Contradictory paths found, negative weights?
-            elif u not in seen or vu_dist < seen[u]:
-                seen[u] = vu_dist
+            vu_dist = distances[v] + cost
+            if u in distances:
+                # Negative or contradictory paths found
+                if vu_dist < distances[u]:
+                    pass
+            elif u not in visited or vu_dist < visited[u]:
+                visited[u] = vu_dist
                 push(queue, (vu_dist, next(c), u))
                 paths[u] = paths[v] + [u]
 
