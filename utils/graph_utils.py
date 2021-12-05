@@ -1,3 +1,6 @@
+import networkx as nx
+
+
 def shortest_path_optimizer(graph, weight='length'):
     if weight == 'length':
         def weight_(source, dest, edge_data):
