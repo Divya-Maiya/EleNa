@@ -48,7 +48,7 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
                 h = (graph, neighbor, dest_node)
             enqueued[neighbor] = ncost, h
             push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
-    pass
+
 
 def astar(graph, start_node, dest_node, limit, mode):
     if mode == "max":
