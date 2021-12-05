@@ -97,3 +97,19 @@ def minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path):
                 return least_elevation[:-i] + node_to_dest_node_shortest
     else:
         return least_elevation
+
+
+def get_l1_distance(graph, start, goal):
+    """Calculates the L1 distance between two nodes.
+    Parameters
+    ----------
+    :param graph: graph object
+    :param goal: destination node for the path
+    :param start: starting point node for the path
+    """
+
+    amherst_graph = graph
+    start_x, start_y = amherst_graph.nodes[start]['x'], amherst_graph.nodes[start]['y']
+    end_x, end_y = amherst_graph.nodes[goal]['x'], amherst_graph.nodes[goal]['y']
+    # return 0 # Dijkstra, essentially
+    return ((end_x - start_x) ** 2 + (end_y - start_y) ** 2) ** 0.5

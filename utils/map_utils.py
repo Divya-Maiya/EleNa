@@ -90,3 +90,5 @@ def convert_path(graph, path):
     final_path.append((last_node['x'], last_node['y']))
     lengths_and_elevations.append({'length': 0, 'elevation': last_node['elevation']})
     return final_path, lengths_and_elevations
+
+
