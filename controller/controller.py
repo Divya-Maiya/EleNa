@@ -1,7 +1,7 @@
 from algorithm.astar import astar
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
-from utils.map_utils import convert_path, get_coordinates, get_node_from_address
+from utils.map_utils import convert_path, get_node_from_address
 import osmnx as ox
 
 """

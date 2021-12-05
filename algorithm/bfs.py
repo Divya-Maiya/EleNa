@@ -1,4 +1,3 @@
-from utils import graph_utils
 from utils.graph_utils import minimum_elevation, maximum_elevation
 
 

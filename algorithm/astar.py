@@ -1,9 +1,6 @@
 import heapq
-import networkx as nx
 from itertools import count
-
 from utils.graph_utils import *
-from utils.map_utils import *
 
 
 def astar(graph, start_node, dest_node, mode):

@@ -26,6 +26,12 @@ model.set_algorithm("Dijkstra")
 # print(get_coordinates("Bragdon Street, Boston, MA 02130-0947, United States"))
 controller.handle_request(graph)
 
+model.set_mode("max")
+controller.handle_request(graph)
+
+model.set_mode("min")
+controller.handle_request(graph)
+
 
 # lat, lng = 42.3676084, -71.0218168
 # node, dist = ox.nearest_nodes(graph, float(lat), float(lng), return_dist=True)

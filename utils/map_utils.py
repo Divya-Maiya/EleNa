@@ -24,8 +24,8 @@ Output:
 
 def get_map(city, state, country, api_key):
     # downloading local map
-    # query = {'city': city, 'state': state, 'country': country}
-    query = {'state': state, 'country': country}
+    query = {'city': city, 'state': state, 'country': country}
+    # query = {'state': state, 'country': country}
     graph_orig = ox.graph_from_place(query, network_type='drive')
 
     # adding elevation data from GoogleMaps
@@ -59,14 +59,14 @@ def get_node_from_address(graph, address):
     try:
         lat, lng = get_coordinates(address)
         node, dist = ox.nearest_nodes(graph, lng, lat, return_dist=True)
-        if dist/10000 > 10000:
+        if dist / 10000 > 10000:
             raise Exception("{} is not currently included in Routing Capabilities".format(address))
         return node
     except:
         raise Exception("Could not find location '{}'".format(address))
 
 
-# Refactor
+# TODO Refactor
 def convert_path(graph, path):
     final_path = []
     lengths_and_elevations = []
@@ -95,5 +95,3 @@ def convert_path(graph, path):
     final_path.append((last_node['x'], last_node['y']))
     lengths_and_elevations.append({'length': 0, 'elevation': last_node['elevation']})
     return final_path, lengths_and_elevations
-
-
