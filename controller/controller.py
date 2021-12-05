@@ -1,12 +1,8 @@
-<<<<<<< Updated upstream
-from algorithm.astar import astar
-=======
 import flask as Flask
-
-from algorithm.aStar import astar
->>>>>>> Stashed changes
+from algorithm.astar import astar
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
+
 from utils.map_utils import convert_path, get_coordinates
 
 """
