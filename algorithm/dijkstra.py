@@ -55,5 +55,7 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
 def dijkstra(graph, start_node, dest_node, limit, mode):
     if mode == "max":
         return maximum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
-    else:
+    elif mode == "min":
         return minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
+    else:
+        return get_shortest_path(graph, start_node, dest_node)
