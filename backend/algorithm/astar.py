@@ -1,6 +1,6 @@
 import heapq
 from itertools import count
-from utils.graph_utils import *
+from backend.utils.graph_utils import *
 
 
 def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):

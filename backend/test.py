@@ -1,8 +1,6 @@
-from controller.controller import Controller
-from model.model import Model
-from utils.map_utils import get_map, get_coordinates
+from backend.controller.controller import Controller
+from backend.model.model import Model
 from utils.map_utils import load_map
-import osmnx as ox
 
 # apiKey = "AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o"
 #
@@ -20,7 +18,7 @@ model.set_limit(0.5)
 # model.set_source("140 Commonwealth Avenue, Chestnut Hill, MA 02467")
 model.set_source("251-255 Geneva Avenue, Boston, MA 02121, United States of America")
 model.set_destination("15 Penfield Street, Boston, MA 02131, United States of America")
-model.set_algorithm("Dijkstra")
+model.set_algorithm("AStar")
 
 # print(get_coordinates("51A Humboldt Avenue, Roxbury, MA 02119 Roxbury Boston Massachusetts United States"))
 # print(get_coordinates("Bragdon Street, Boston, MA 02130-0947, United States"))

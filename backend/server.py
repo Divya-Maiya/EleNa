@@ -6,8 +6,8 @@ from flask import Flask, request, render_template
 import json
 import webbrowser
 
-from controller.controller import Controller
-from model.model import Model
+from backend.controller.controller import Controller
+from backend.model.model import Model
 from utils import map_utils
 
 app = Flask(__name__)

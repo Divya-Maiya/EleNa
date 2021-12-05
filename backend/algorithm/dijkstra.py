@@ -1,4 +1,4 @@
-from utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
+from backend.utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
     minimum_elevation
 import heapq
 from itertools import count

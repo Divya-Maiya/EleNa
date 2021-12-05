@@ -1,3 +1,5 @@
+import os
+
 import osmnx as ox
 import pickle as pkl
 
@@ -48,6 +50,8 @@ Output:
 
 
 def load_map():
+    os.chdir("backend")
+    print(os.getcwd())
     with open("data/graph.pkl", 'rb') as infile:
         graph_orig = pkl.load(infile)
         # graph_orig = ox.add_node_elevations_google(graph_orig, api_key="AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o")

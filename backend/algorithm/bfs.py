@@ -1,4 +1,4 @@
-from utils.graph_utils import minimum_elevation, maximum_elevation
+from backend.utils.graph_utils import minimum_elevation, maximum_elevation
 
 
 def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
