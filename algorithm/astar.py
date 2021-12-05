@@ -3,13 +3,13 @@ from itertools import count
 from utils.graph_utils import *
 
 
-def astar(graph, start_node, dest_node, mode):
+def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
     push = heapq.heappush
     pop = heapq.heappop
 
     successor_graph = graph._succ if graph.is_directed() else graph._adj
 
-    weight = shortest_path_optimizer(graph, mode)
+    weight = shortest_path_optimizer(graph, edge_weight)
     c = count()
     queue = [(0, next(c), start_node, 0, None)]
 
@@ -49,3 +49,9 @@ def astar(graph, start_node, dest_node, mode):
             enqueued[neighbor] = ncost, h
             push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
     pass
+
+def astar(graph, start_node, dest_node, limit, mode):
+    if mode == "max":
+        return maximum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
+    else:
+        return minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
