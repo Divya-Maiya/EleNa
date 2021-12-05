@@ -45,7 +45,7 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
                 if qcost <= ncost:
                     continue
             else:
-                h = (graph, neighbor, dest_node)
+                h = get_l1_distance(graph, neighbor, dest_node)
             enqueued[neighbor] = ncost, h
             push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
 
@@ -53,5 +53,7 @@ def get_shortest_path(graph, start_node, dest_node, edge_weight='length'):
 def astar(graph, start_node, dest_node, limit, mode):
     if mode == "max":
         return maximum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
-    else:
+    elif mode == "min":
         return minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path)
+    else:
+        return get_shortest_path(graph, start_node, dest_node)
