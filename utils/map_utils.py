@@ -9,6 +9,7 @@ Map related utils for oxmnx library
 def get_coordinates(address):
     return ox.geocode(address)
 
+
 """
 get_map(): Saves the map of a particular city
 Inputs: 
