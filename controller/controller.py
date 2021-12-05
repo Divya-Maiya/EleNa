@@ -1,7 +1,8 @@
 from algorithm.astar import astar
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
-from utils.map_utils import convert_path, get_coordinates
+from utils.map_utils import convert_path, get_coordinates, get_node_from_address
+import osmnx as ox
 
 """
 Controller class
@@ -17,6 +18,7 @@ class Controller(object):
         self.model = model
 
     def get_route(self, graph, source_node, dest_node, algorithm='AStar', limit=0, mode='min'):
+        path = ""
         if algorithm == 'AStar':
             path = astar(graph, source_node, dest_node, limit, mode)
 
@@ -26,21 +28,20 @@ class Controller(object):
         elif algorithm == 'BFS':
             path = bfs(graph, source_node, dest_node, limit, mode)
 
-        print(path)
+        final_path, path_data = convert_path(graph, path)
 
-        path, path_data = convert_path(graph, path)
-
-        print(path)
+        # print(path)
         print(path_data)
-        return {'path': path, 'path_data': path_data}
+        ox.plot_graph_route(graph, path)
+        return {'path': final_path, 'path_data': path_data}
 
     def handle_request(self, graph):
         # #Load map
         # graph = load_map()
         #
         #Get lt and long of source and dest
-        source_node = get_coordinates(self.model.get_source())
-        dest_node = get_coordinates(self.model.get_destination())
+        source_node = get_node_from_address(graph, self.model.get_source())
+        dest_node = get_node_from_address(graph, self.model.get_destination())
 
         #Get route
         return self.get_route(graph, source_node, dest_node,
