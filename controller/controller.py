@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 from algorithm.astar import astar
+=======
+import flask as Flask
+
+from algorithm.aStar import astar
+>>>>>>> Stashed changes
 from algorithm.dijkstra import dijkstra
 from algorithm.bfs import bfs
 from utils.map_utils import convert_path, get_coordinates
@@ -15,6 +21,8 @@ class Controller(object):
 
     def set_model(self, model):
         self.model = model
+        self.app = Flask(__name__)
+        graphs = {}
 
     def get_route(self, graph, source_node, dest_node, algorithm='AStar', limit=0, mode='min'):
         if algorithm == 'AStar':
