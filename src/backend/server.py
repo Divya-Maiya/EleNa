@@ -1,6 +1,7 @@
-# Handle front end requests
-# Instantiate controller
-
+"""
+Flask server to handle requests from frontend
+Uses controller object
+"""
 from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
 
@@ -12,13 +13,15 @@ from src.backend.model.model import Model
 from utils import map_utils
 
 app = Flask(__name__)
-cors = CORS(app)
-# graphs = {}
-# print(os.getcwd())
 
+# For Cross Origin Resource sharing
+cors = CORS(app)
+
+# Open the browser and start server at port 5000
 webbrowser.open('http://localhost:5000', new=2)
 
 
+# Define all routes
 @app.route('/', methods=['GET'])
 @cross_origin()
 def index():
@@ -28,6 +31,8 @@ def index():
 @app.route('/route', methods=['POST'])
 @cross_origin()
 def route():
+
+    # Get input and decode values
     data = json.loads(request.data)
     print(data)
 
@@ -35,6 +40,7 @@ def route():
     algo = data['algorithm']
     city = data['city']
 
+    # Load specified graph
     map_file = "data/graph_" + city + ".pkl"
     graph = map_utils.load_map(map_file)
 
@@ -47,6 +53,7 @@ def route():
     model.set_source(data['start'])
     model.set_destination(data['dest'])
 
+    # Instantiate controller
     ctr = Controller()
     ctr.set_model(model)
 
