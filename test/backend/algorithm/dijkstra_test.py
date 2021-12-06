@@ -1,3 +1,4 @@
+import os
 import unittest
 import networkx as nx
 
@@ -10,9 +11,11 @@ class MyTestCase(unittest.TestCase):
     limit = 5
 
     def test_get_shortest_path(self):
-        graph = load_map("data/graph_Amherst.pkl", changeDir=1)
-        start_node = 0
-        dest_node = 10
+        print(os.getcwd())
+        os.chdir("../..")
+        graph = load_map("resources/graph_Amherst.pkl", changeDir=1)
+        start_node = 66692331
+        dest_node = 66737929
         received_shortest_path = Dijkstra().get_shortest_path(graph, start_node, dest_node)
         expected_shortest_path = nx.shortest_path(graph, start_node, dest_node, weight='length')
         self.assertEqual(received_shortest_path, expected_shortest_path)
