@@ -2,6 +2,8 @@
 # Instantiate controller
 
 from flask import Flask, request, render_template
+from flask_cors import CORS, cross_origin
+
 import json
 import webbrowser
 
@@ -10,6 +12,7 @@ from src.backend.model.model import Model
 from utils import map_utils
 
 app = Flask(__name__)
+cors = CORS(app)
 # graphs = {}
 # print(os.getcwd())
 
@@ -17,11 +20,13 @@ webbrowser.open('http://localhost:5000', new=2)
 
 
 @app.route('/', methods=['GET'])
+@cross_origin()
 def index():
     return render_template("index.html", token="Hello SEleNa")
 
 
 @app.route('/route', methods=['POST'])
+@cross_origin()
 def route():
     data = json.loads(request.data)
     print(data)
