@@ -39,6 +39,8 @@ class MyTestCase(unittest.TestCase):
         verify(osmnx, times=1).add_edge_grades(...)
         verify(pickle, times=1).dump(...)
 
+        unstub()
+
     def test_get_node_from_address(self):
         os.chdir("../..")
         graph = load_map("resources/graph_Amherst.pkl", changeDir=1)
@@ -49,6 +51,8 @@ class MyTestCase(unittest.TestCase):
         obtained_node = get_node_from_address(graph, address)
 
         self.assertEqual(expected_node, obtained_node)
+
+        unstub()
 
 
 if __name__ == '__main__':
