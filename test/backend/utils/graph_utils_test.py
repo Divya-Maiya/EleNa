@@ -1,6 +1,8 @@
 import os
 import unittest
 from mockito import *
+import osmnx as ox
+from osmnx import  *
 import osmnx
 import pickle
 import networkx
@@ -93,23 +95,12 @@ class TestGraphUtils(unittest.TestCase):
 
         source_node = 66692331
         neighbor = 66644252
-        source_coords = -72.532612, 42.406836
-        neighbor_coords = ox.geocode(neighbor)
-        print(neighbor_coords)
-        when(osmnx).nearest_nodes(...).thenReturn((source_node, 0))
-        when(osmnx).geocode(...).thenReturn(expected_coords)
-
-        source_node = get_node_from_address(graph, "Random String")
 
         shortest_path = [source_node, neighbor]
         expected_elevation = max(0, graph.nodes[neighbor]['elevation'] - graph.nodes[source_node]['elevation'])
         obtained_elevation = get_path_elevation(graph, shortest_path)
         self.assertEqual(obtained_elevation, expected_elevation)
 
-        verify(osmnx, times=1).nearest_nodes(...)
-        verify(osmnx, times=1).geocode(...)
-
-        unstub()
 
 
 if __name__ == '__main__':
