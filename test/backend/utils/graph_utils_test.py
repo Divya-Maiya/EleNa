@@ -7,6 +7,7 @@ import networkx
 
 from src.backend.utils.map_utils import *
 from src.backend.utils.graph_utils import *
+from src.backend.algorithm.astar import *
 from src.backend.model.model import *
 
 
@@ -18,7 +19,7 @@ def test_setup():
 graph = test_setup()
 
 
-class testGraphUtils(unittest.TestCase):
+class TestGraphUtils(unittest.TestCase):
     global graph
 
     def test_shortest_path_optimizer(self):
@@ -38,36 +39,75 @@ class testGraphUtils(unittest.TestCase):
         expected_function = weight_
         obtained_function = shortest_path_optimizer(graph, 'length')
         self.assertEqual(obtained_function(source_node, neighbor, w), expected_function(source_node,neighbor,w))
+
+        verify(osmnx, times=1).nearest_nodes(...)
+        verify(osmnx, times=1).geocode(...)
         unstub()
 
         # clean up
 
+    def test_get_path_length(self):
+        a = AStar()
 
-    def test_get_map(self):
+        source_node = 66692331
+        neighbor = 66644252
+        expected_coords = -72.532612, 42.406836
+        when(osmnx).nearest_nodes(...).thenReturn((source_node, 0))
+        when(osmnx).geocode(...).thenReturn(expected_coords)
 
-        when(osmnx).graph_from_place(...).thenReturn(graph)
-        when(osmnx).add_node_elevations_google(...).thenReturn(graph)
-        when(osmnx).add_edge_grades(...).thenReturn(graph)
+        source_node = get_node_from_address(graph, "Random String")
 
-        when(pickle).dump(...)
-        # when(pickle).dump(...).thenReturn()
+        shortest_path = [source_node, neighbor]
+        expected_length = graph[source_node][neighbor][0]['length']
+        obtained_path = get_path_length(graph, shortest_path)
+        self.assertEqual(obtained_path, expected_length)
 
-        get_map("Amherst", "Massachusetts", "USA", "abc", "testFile")
-
-        verify(osmnx, times=1).graph_from_place(...)
-        verify(osmnx, times=1).add_node_elevations_google(...)
-        verify(osmnx, times=1).add_edge_grades(...)
-        verify(pickle, times=1).dump(...)
+        verify(osmnx, times=1).nearest_nodes(...)
+        verify(osmnx, times=1).geocode(...)
 
         unstub()
 
-    def test_get_node_from_address(self):
-        address = "1 Rolling Green Dr, Amherst, MA 01002"
+    def test_get_path_elevation(self):
+        a = AStar()
 
-        expected_node = 66737929
-        obtained_node = get_node_from_address(graph, address)
+        source_node = 66692331
+        neighbor = 66644252
+        expected_coords = -72.532612, 42.406836
+        when(osmnx).nearest_nodes(...).thenReturn((source_node, 0))
+        when(osmnx).geocode(...).thenReturn(expected_coords)
 
-        self.assertEqual(expected_node, obtained_node)
+        source_node = get_node_from_address(graph, "Random String")
+
+        shortest_path = [source_node, neighbor]
+        expected_elevation = max(0, graph.nodes[neighbor]['elevation'] - graph.nodes[source_node]['elevation'])
+        obtained_elevation = get_path_elevation(graph, shortest_path)
+        self.assertEqual(obtained_elevation, expected_elevation)
+
+        verify(osmnx, times=1).nearest_nodes(...)
+        verify(osmnx, times=1).geocode(...)
+
+        unstub()
+
+    def test_get_l1_distance(self):
+        a = AStar()
+
+        source_node = 66692331
+        neighbor = 66644252
+        source_coords = -72.532612, 42.406836
+        neighbor_coords = ox.geocode(neighbor)
+        print(neighbor_coords)
+        when(osmnx).nearest_nodes(...).thenReturn((source_node, 0))
+        when(osmnx).geocode(...).thenReturn(expected_coords)
+
+        source_node = get_node_from_address(graph, "Random String")
+
+        shortest_path = [source_node, neighbor]
+        expected_elevation = max(0, graph.nodes[neighbor]['elevation'] - graph.nodes[source_node]['elevation'])
+        obtained_elevation = get_path_elevation(graph, shortest_path)
+        self.assertEqual(obtained_elevation, expected_elevation)
+
+        verify(osmnx, times=1).nearest_nodes(...)
+        verify(osmnx, times=1).geocode(...)
 
         unstub()
 
