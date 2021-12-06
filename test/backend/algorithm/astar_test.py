@@ -16,7 +16,7 @@ def test_setup():
 graph = test_setup()
 
 
-class MyTestCase(unittest.TestCase):
+class TestAstar(unittest.TestCase):
     global graph
 
     def test_shortest_path(self):
@@ -34,10 +34,11 @@ class MyTestCase(unittest.TestCase):
         dest_node = 1
         astar = AStar()
 
-        received_shortest_path = astar.get_shortest_path(graph, start_node, dest_node)
-        expected_shortest_path = []
+        with self.assertRaises(Exception) as context:
+            astar.get_shortest_path(graph, start_node, dest_node)
 
-        self.assertEqual(received_shortest_path, expected_shortest_path)
+        self.assertTrue(
+            'Start node is not in the map. Please restart with the correct start node' in str(context.exception))
 
     def test_min_elevation(self):
         start_node = 66692331
@@ -86,7 +87,7 @@ class MyTestCase(unittest.TestCase):
         print("\n")
 
         self.assertLessEqual(max_path_length, max_length)
-        self.assertGreaterEqual(max_elevation, regular_elevation)
+        self.assertGreaterEqual(regular_elevation, max_elevation)
 
 
 if __name__ == '__main__':

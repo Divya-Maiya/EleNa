@@ -3,10 +3,21 @@ import unittest
 from mockito import when, mock, unstub, verify
 import osmnx
 import pickle
+
 from src.backend.utils.map_utils import *
 
 
+def test_setup():
+    os.chdir("../..")
+    return load_map("resources/graph_Amherst.pkl", changeDir=1)
+
+
+graph = test_setup()
+
+
 class MyTestCase(unittest.TestCase):
+    global graph
+
     def test_get_geocode(self):
         expected_coordinates = (42.362465, -72.485407)
 
@@ -22,8 +33,6 @@ class MyTestCase(unittest.TestCase):
         unstub()
 
     def test_get_map(self):
-        os.chdir("../..")
-        graph = load_map("resources/graph_Amherst.pkl", changeDir=1)
 
         when(osmnx).graph_from_place(...).thenReturn(graph)
         when(osmnx).add_node_elevations_google(...).thenReturn(graph)
@@ -42,9 +51,6 @@ class MyTestCase(unittest.TestCase):
         unstub()
 
     def test_get_node_from_address(self):
-        os.chdir("../..")
-        graph = load_map("resources/graph_Amherst.pkl", changeDir=1)
-
         address = "1 Rolling Green Dr, Amherst, MA 01002"
 
         expected_node = 66737929

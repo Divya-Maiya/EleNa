@@ -19,6 +19,9 @@ class BFS(Algorithm, ABC):
             path = queue.pop(0)
             node = path[-1]
             # add neighboring nodes if they haven't been explored
+            if node not in graph:
+                raise Exception("Start node is not in the map. Please restart with the correct start node")
+
             if node not in explored:
                 neighbors = graph.neighbors(node)
                 for neighbor in neighbors:
@@ -32,4 +35,7 @@ class BFS(Algorithm, ABC):
         return []
 
     def bfs(self, graph, start_node, dest_node, limit, mode):
-        return self.get_shortest_path(self, graph, start_node, dest_node)
+        try:
+            return self.get_shortest_path(self, graph, start_node, dest_node)
+        except:
+            raise Exception("Start node not in graph")

@@ -20,6 +20,10 @@ def shortest_path_optimizer(graph, weight='length'):
             except:
                 print("elevation not found: ", source, dest)
                 return 0
+    else:
+        def weight_(source, dest, edge_data):
+            return min(attr.get(weight, 1) for attr in edge_data.values())
+
     return weight_
 
 
@@ -77,7 +81,11 @@ def maximum_elevation(graph, start_node, dest_node, limit, get_shortest_path):
 
 
 def minimum_elevation(graph, start_node, dest_node, limit, get_shortest_path):
-    shortest_path = get_shortest_path(graph, start_node, dest_node, edge_weight="length")
+    global shortest_path
+    try:
+        shortest_path = get_shortest_path(graph, start_node, dest_node, edge_weight="length")
+    except:
+        raise Exception("Start node not in Graph")
     shortest_path_length = get_path_length(graph, shortest_path)
     max_path_length = shortest_path_length * (1 + limit)
 

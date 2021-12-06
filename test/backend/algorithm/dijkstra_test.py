@@ -15,7 +15,7 @@ def test_setup():
 graph = test_setup()
 
 
-class MyTestCase(unittest.TestCase):
+class TestDijkstra(unittest.TestCase):
     global graph
 
     def test_get_shortest_path(self):
@@ -28,9 +28,13 @@ class MyTestCase(unittest.TestCase):
     def test_get_shortest_path_invalid(self):
         start_node = 0
         dest_node = 1
-        received_shortest_path = Dijkstra().get_shortest_path(graph, start_node, dest_node)
-        expected_shortest_path = []
-        self.assertEqual(received_shortest_path, expected_shortest_path)
+        dijkstra = Dijkstra()
+
+        with self.assertRaises(Exception) as context:
+            dijkstra.get_shortest_path(graph, start_node, dest_node)
+
+        self.assertTrue(
+            'Start node is not in the map. Please restart with the correct start node' in str(context.exception))
 
     def test_min_elevation(self):
         start_node = 66692331
@@ -79,7 +83,7 @@ class MyTestCase(unittest.TestCase):
         print("\n")
 
         self.assertLessEqual(max_path_length, max_length)
-        self.assertGreaterEqual(max_elevation, regular_elevation)
+        self.assertGreaterEqual(regular_elevation, max_elevation)
 
 
 if __name__ == '__main__':

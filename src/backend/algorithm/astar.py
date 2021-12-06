@@ -46,6 +46,9 @@ class AStar(Algorithm, ABC):
 
             explored[curnode] = parent
 
+            if curnode not in successor_graph:
+                raise Exception("Start node is not in the map. Please restart with the correct start node")
+
             for neighbor, w in successor_graph[curnode].items():
                 ncost = dist + weight(curnode, neighbor, w)
                 if neighbor in enqueued:

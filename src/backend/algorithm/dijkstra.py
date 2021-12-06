@@ -26,8 +26,7 @@ class Dijkstra(Algorithm, ABC):
         queue = []
 
         if start_node not in graph:
-            print("Start node is not in the map. Please restart with the correct start node")
-            return []  # Figure out way to handle exceptions properly
+            raise Exception("Start node is not in the map. Please restart with the correct start node")
 
         visited[start_node] = 0
         push(queue, (0, next(c), start_node))
