@@ -38,8 +38,8 @@ def get_map(city, state, country, api_key, file_name):
     pkl.dump(graph_orig, open(file_name, "wb"))
 
     # projecting map on to 2D space
-    graph_projection = ox.project_graph(graph_orig)
-    pkl.dump(graph_projection, open("data/graph_projected.pkl", "wb"))
+    # graph_projection = ox.project_graph(graph_orig)
+    # pkl.dump(graph_projection, open("data/graph_projected.pkl", "wb"))
 
 
 """
@@ -78,9 +78,8 @@ def get_node_from_address(graph, address):
 def convert_path(graph, path):
     final_path = []
     lengths_and_elevations = []
-    final_nodes = []
 
-    # next_node = None
+    next_node = None
     for i in range(len(path) - 1):
         node_id = path[i]
         next_node = path[i + 1]
@@ -99,6 +98,10 @@ def convert_path(graph, path):
         lengths_and_elevations.append({'length': length, 'elevation': elevation, 'grade': grade})
 
     # Add Last Node
+    if next_node == None :
+        print("Unable to find a route")
+        return
+
     last_node = graph.nodes[next_node]
     final_path.append((last_node['x'], last_node['y']))
     lengths_and_elevations.append({'length': 0, 'elevation': last_node['elevation']})
