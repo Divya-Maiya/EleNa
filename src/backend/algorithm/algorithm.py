@@ -1,15 +1,25 @@
 from abc import *
 from src.backend.utils.graph_utils import *
-from src.backend.utils.map_utils import *
+import networkx as nx
 
 """
-Template method for all algorithms to implement
+Template Design pattern
+Abstract class for all algorithms to implement
 """
 
 
 class Algorithm(ABC):
 
     def maximum_elevation(self, graph, start_node, dest_node, limit, get_shortest_path):
+        """
+        Find route with max elevation
+        :param graph: Graph obj
+        :param start_node: id of start node
+        :param dest_node: id of dest node
+        :param limit: deviance allowed
+        :param get_shortest_path: method to get vanilla shortest path
+        :return: path with max elevation
+        """
         shortest_path = get_shortest_path(graph, start_node, dest_node, edge_weight="length")
         shortest_path_length = get_path_length(graph, shortest_path)
         max_path_length = shortest_path_length * (1 + limit)
@@ -48,6 +58,15 @@ class Algorithm(ABC):
         return max_path
 
     def minimum_elevation(self, graph, start_node, dest_node, limit, get_shortest_path):
+        """
+        Find route with min elevation
+        :param graph: Graph obj
+        :param start_node: id of start node
+        :param dest_node: id of dest node
+        :param limit: deviance allowed
+        :param get_shortest_path: method to get vanilla shortest path
+        :return: path with min elevation
+        """
         global shortest_path
         try:
             shortest_path = get_shortest_path(graph, start_node, dest_node, edge_weight="length")
@@ -76,6 +95,9 @@ class Algorithm(ABC):
         else:
             return least_elevation
 
+    """
+    Abstract template method implemented by child classes
+    """
     @abstractmethod
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight):
         pass

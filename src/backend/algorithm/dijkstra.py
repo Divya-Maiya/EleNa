@@ -1,5 +1,3 @@
-from abc import ABC
-
 from src.backend.algorithm.algorithm import *
 from src.backend.utils.graph_utils import *
 import heapq
@@ -12,6 +10,14 @@ To get the shortest path using Dijkstra's algorithm
 
 class Dijkstra(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
+        """
+        Get the vanilla shortest path
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param edge_weight: weight measure
+        :return: Vanilla shortest path
+        """
         optimizer_func = shortest_path_optimizer(graph, edge_weight)
         paths = {start_node: [start_node]}
         new_graph = graph._succ if graph.is_directed() else graph._adj
@@ -54,6 +60,15 @@ class Dijkstra(Algorithm):
         return paths[dest_node]
 
     def dijkstra(self, graph, start_node, dest_node, limit, mode):
+        """
+        Dijkstra entry point
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param limit: Deviance allowed
+        :param mode: Max/Min
+        :return: Optimized shortest path
+        """
         if mode == "max":
             return self.maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         elif mode == "min":

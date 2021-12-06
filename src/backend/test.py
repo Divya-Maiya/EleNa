@@ -7,7 +7,7 @@ from src.backend.utils.map_utils import *
 # file_name = "data/graph_Amherst.pkl"
 # get_map("Amherst", "Massachusetts", "USA", apiKey, file_name)
 
-graph = load_map("data/graph_Amherst.pkl", changeDir=1)
+graph = load_map("data/graph_Amherst.pkl", changeDir=0)
 # ox.plot_graph(graph)
 # print(g)
 
@@ -17,7 +17,7 @@ controller.set_model(model)
 # model.set_mode("plain")
 model.set_limit(0.5)
 model.set_destination("1 Rolling Green Dr, Amherst, MA 01002")
-model.set_source("16G Brandywine, Amherst, MA 01002")
+model.set_source("Brandywine Dr, Amherst, MA 01002")
 # model.set_source("251-255 Geneva Avenue, Boston, MA 02121, United States of America")
 # model.set_destination("15 Penfield Street, Boston, MA 02131, United States of America")
 model.set_algorithm("Dijkstra")

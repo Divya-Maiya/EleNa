@@ -1,10 +1,16 @@
-from abc import ABC
-
 from src.backend.algorithm.algorithm import Algorithm
 
 
 class BFS(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
+        """
+        Get the vanilla shortest path
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param edge_weight: weight measure
+        :return: Vanilla shortest path
+        """
         explored = []
 
         # start the BFS queue
@@ -35,6 +41,15 @@ class BFS(Algorithm):
         return []
 
     def bfs(self, graph, start_node, dest_node, limit, mode):
+        """
+        BFS entry point
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param limit: Deviance allowed
+        :param mode: Max/Min
+        :return: Optimized shortest path
+        """
         try:
             return self.get_shortest_path(self, graph, start_node, dest_node)
         except:

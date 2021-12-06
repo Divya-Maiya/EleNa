@@ -1,5 +1,4 @@
 import heapq
-from abc import ABC
 from itertools import count
 
 from src.backend.algorithm.algorithm import *
@@ -12,6 +11,14 @@ To get the shortest path using the A* Algorithm
 
 class AStar(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
+        """
+        Get the vanilla shortest path
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param edge_weight: weight measure
+        :return: Vanilla shortest path
+        """
         push = heapq.heappush
         pop = heapq.heappop
 
@@ -61,6 +68,15 @@ class AStar(Algorithm):
                 push(queue, (ncost + h, next(c), neighbor, ncost, curnode))
 
     def astar(self, graph, start_node, dest_node, limit, mode):
+        """
+        Astar entry point
+        :param graph: Graph obj
+        :param start_node: node id of source
+        :param dest_node: node id of dest
+        :param limit: Deviance allowed
+        :param mode: Max/Min
+        :return: Optimized shortest path
+        """
         if mode == "max":
             return self.maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         elif mode == "min":
