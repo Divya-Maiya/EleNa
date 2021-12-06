@@ -3,7 +3,7 @@ from abc import ABC
 from src.backend.algorithm.algorithm import Algorithm
 
 
-class BFS(Algorithm, ABC):
+class BFS(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
         explored = []
 
