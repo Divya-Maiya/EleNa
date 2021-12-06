@@ -1,6 +1,6 @@
 import os
 import unittest
-from mockito import when, mock, unstub, verify
+from mockito import *
 import osmnx
 import pickle
 
