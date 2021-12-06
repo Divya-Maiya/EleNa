@@ -1,8 +1,7 @@
 from abc import ABC
 
-from src.backend.algorithm.algorithm import Algorithm
-from src.backend.utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
-    minimum_elevation
+from src.backend.algorithm.algorithm import *
+from src.backend.utils.graph_utils import *
 import heapq
 from itertools import count
 
@@ -11,7 +10,7 @@ To get the shortest path using Dijkstra's algorithm
 """
 
 
-class Dijkstra(Algorithm, ABC):
+class Dijkstra(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
         optimizer_func = shortest_path_optimizer(graph, edge_weight)
         paths = {start_node: [start_node]}
@@ -56,8 +55,8 @@ class Dijkstra(Algorithm, ABC):
 
     def dijkstra(self, graph, start_node, dest_node, limit, mode):
         if mode == "max":
-            return maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
+            return self.maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         elif mode == "min":
-            return minimum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
+            return self.minimum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         else:
             return self.get_shortest_path(graph, start_node, dest_node)
