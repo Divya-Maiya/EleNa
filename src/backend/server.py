@@ -17,6 +17,9 @@ app = Flask(__name__)
 # For Cross Origin Resource sharing
 cors = CORS(app)
 
+# Instantiate controller
+ctr = Controller()
+
 # Open the browser and start server at port 5000
 webbrowser.open('http://localhost:5000', new=2)
 
@@ -53,8 +56,6 @@ def route():
     model.set_source(data['start'])
     model.set_destination(data['dest'])
 
-    # Instantiate controller
-    ctr = Controller()
     ctr.set_model(model)
 
     return ctr.handle_request(graph)
