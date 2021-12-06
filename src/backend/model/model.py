@@ -1,5 +1,10 @@
 """
-Defining the model
+Model class to encapsulate all data
+- Source : Starting point
+- Destination : End point
+- Limit : Amount of deviation allowed
+- Mode : Maximize/ Minimize
+- Algorithm : Algorithm to use for finding navigation route
 """
 
 
