@@ -62,10 +62,10 @@ def load_map(filepath, changeDir=0):
 
 def get_node_from_address(graph, address):
     """
-    Gets the nearest
-    :param graph:
-    :param address:
-    :return:
+    Gets the node nearest to the supplied address
+    :param graph: graph object
+    :param address: address
+    :return: nearest node id
     """
     try:
         lat, lng = get_coordinates(address)
@@ -77,8 +77,13 @@ def get_node_from_address(graph, address):
         raise Exception("Could not find location '{}'".format(address))
 
 
-# TODO Refactor
 def convert_path(graph, path):
+    """
+    Converts path to final output
+    :param graph: graph object
+    :param path: final route path
+    :return: final path with node ids of all nodes in the along with other info
+    """
     final_path = []
     lengths_and_elevations = []
 
