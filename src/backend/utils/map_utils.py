@@ -98,9 +98,8 @@ def convert_path(graph, path):
         lengths_and_elevations.append({'length': length, 'elevation': elevation, 'grade': grade})
 
     # Add Last Node
-    if next_node == None :
-        print("Unable to find a route")
-        return
+    if next_node is None:
+        raise Exception("Unable to find a route")
 
     last_node = graph.nodes[next_node]
     final_path.append((last_node['x'], last_node['y']))
