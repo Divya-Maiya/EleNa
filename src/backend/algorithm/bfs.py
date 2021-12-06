@@ -1,7 +1,7 @@
 from abc import ABC
 
-from backend.algorithm.algorithm import Algorithm
-from backend.utils.graph_utils import minimum_elevation, maximum_elevation
+from src.backend.algorithm.algorithm import Algorithm
+from src.backend.utils.graph_utils import minimum_elevation, maximum_elevation
 
 
 class BFS(Algorithm, ABC):

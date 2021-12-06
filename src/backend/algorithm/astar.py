@@ -2,8 +2,8 @@ import heapq
 from abc import ABC
 from itertools import count
 
-from backend.algorithm.algorithm import Algorithm
-from backend.utils.graph_utils import *
+from src.backend.algorithm.algorithm import Algorithm
+from src.backend.utils.graph_utils import *
 
 """
 To get the shortest path using the A* Algorithm

@@ -1,6 +1,6 @@
-from backend.controller.controller import Controller
-from backend.model.model import Model
-from backend.utils.map_utils import *
+from src.backend.controller.controller import Controller
+from src.backend.model.model import Model
+from src.backend.utils.map_utils import *
 
 # apiKey = "AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o"
 #

@@ -52,9 +52,10 @@ Output:
 
 
 def load_map(filepath, changeDir=0):
-    if changeDir == 1:
-        os.chdir("backend")
     print(os.getcwd())
+    # if changeDir == 1:
+    #     os.chdir("src/backend")
+
     with open(filepath, 'rb') as infile:
         graph_orig = pkl.load(infile)
         # graph_orig = ox.add_node_elevations_google(graph_orig, api_key="AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o")

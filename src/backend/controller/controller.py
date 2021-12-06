@@ -1,7 +1,7 @@
-from backend.algorithm.astar import AStar
-from backend.algorithm.dijkstra import Dijkstra
-from backend.algorithm.bfs import BFS
-from backend.utils.map_utils import convert_path, get_node_from_address
+from src.backend.algorithm.astar import AStar
+from src.backend.algorithm.dijkstra import Dijkstra
+from src.backend.algorithm.bfs import BFS
+from src.backend.utils.map_utils import convert_path, get_node_from_address
 import osmnx as ox
 
 """

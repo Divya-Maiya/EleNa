@@ -1,7 +1,7 @@
 from abc import ABC
 
-from backend.algorithm.algorithm import Algorithm
-from backend.utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
+from src.backend.algorithm.algorithm import Algorithm
+from src.backend.utils.graph_utils import shortest_path_optimizer, maximum_elevation, \
     minimum_elevation
 import heapq
 from itertools import count
