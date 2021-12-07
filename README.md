@@ -54,7 +54,7 @@ $ coverage html --omit="*src/frontend*,*/test*"
 3. **Design Pattern**: A **template design pattern** is used by the algorithms (A*, Dijkstra's and BFS) implemented.
 4. **Modularity / Code Organization**: The code has a package structure that shows modularity.
 5. **Encapsulation**: Encapsulation has been achieved as the code is organized into classes
-6. **Reusability**: Since the code is modular code, it allows for reusability. 
+6. **Reusability**: Since the code is modular, it allows for reusability. 
 7. **Test Suite**: A detailed test-suite has been included with a code-coverage of ~85%
 8. **Type Safety / Exception Handling**: Exception handling has been included using try/except/raise blocks. 
 9. **Version Control**: From the beginning of the projected, **Git** has been used as a version control system.
