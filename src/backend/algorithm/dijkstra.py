@@ -2,7 +2,7 @@ from src.backend.algorithm.algorithm import *
 from src.backend.utils.graph_utils import *
 import heapq
 from itertools import count
-
+import logging
 """
 To get the shortest path using Dijkstra's algorithm
 """
@@ -70,8 +70,11 @@ class Dijkstra(Algorithm):
         :return: Optimized shortest path
         """
         if mode == "max":
+            logging.info("Calculation max elevation path using Dijkstra's Algorithm")
             return self.maximum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         elif mode == "min":
+            logging.info("Calculation min elevation path using Dijkstra's Algorithm")
             return self.minimum_elevation(graph, start_node, dest_node, limit, self.get_shortest_path)
         else:
+            logging.info("Calculation shortest path using Dijkstra's Algorithm")
             return self.get_shortest_path(graph, start_node, dest_node)

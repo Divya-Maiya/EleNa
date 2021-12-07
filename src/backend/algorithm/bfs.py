@@ -1,4 +1,5 @@
 from src.backend.algorithm.algorithm import Algorithm
+import logging
 
 
 class BFS(Algorithm):
@@ -26,6 +27,7 @@ class BFS(Algorithm):
             node = path[-1]
             # add neighboring nodes if they haven't been explored
             if node not in graph:
+                logging.error("Start node is not in the map. Please restart with the correct start node")
                 raise Exception("Start node is not in the map. Please restart with the correct start node")
 
             if node not in explored:
@@ -50,6 +52,7 @@ class BFS(Algorithm):
         :param mode: Max/Min
         :return: Optimized shortest path
         """
+        logging.info("Finding shortest path using BFS Algorithm")
         try:
             return self.get_shortest_path(graph, start_node, dest_node)
         except:

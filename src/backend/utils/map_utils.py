@@ -1,3 +1,4 @@
+import logging
 import os
 
 import osmnx as ox
@@ -71,9 +72,11 @@ def get_node_from_address(graph, address):
         lat, lng = get_coordinates(address)
         node, dist = ox.nearest_nodes(graph, lng, lat, return_dist=True)
         if dist / 10000 > 10000:
+            logging.error("The given address is out of bounds")
             raise Exception("{} is not currently included in Routing Capabilities".format(address))
         return node
     except:
+        logging.error("The given location cannot be found")
         raise Exception("Could not find location '{}'".format(address))
 
 
@@ -107,6 +110,7 @@ def convert_path(graph, path):
 
     # Add Last Node
     if next_node is None:
+        logging.error("Route cannot be found for the given source and destination")
         raise Exception("Unable to find a route")
 
     last_node = graph.nodes[next_node]
