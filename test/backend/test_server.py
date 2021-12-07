@@ -1,5 +1,12 @@
+import os
+
 from flask import json
 from flask import *
+from test.helper_utils import test_setup
+from mockito import when
+from src.backend.utils.map_utils import load_map
+
+from src.backend.utils import map_utils
 
 
 def test_server_start(test_client):
@@ -7,24 +14,17 @@ def test_server_start(test_client):
     assert response.status_code == 200
 
 def test_post_data(test_client):
-    actual_response = test_client.get('/')
-    assert actual_response==200
-    # request_body = {
-    #     "algorithm": "Dijkstra",
-    #     "start": "Brandywine Dr, Amherst, MA 01002",
-    #     "dest": "Rolling Green Drive, Amherst, MA 01002",
-    #     "mode": "max",
-    #     "limit": 50,
-    #     "city": "Amherst"
-    # }
-    request_body=dict(
-        algorithm = "Dijkstra",
-        start = "Brandywine Dr, Amherst, MA 01002",
-        dest = "Rolling Green Drive, Amherst, MA 01002",
-        mode = "max",
-        limit =  50,
-        city =  "Amherst"
-    )
+    graph = load_map("resources/graph_Amherst.pkl", changeDir=1)
+
+    when(map_utils).load_map(...).thenReturn(graph)
+
+    request_body = {"algorithm": "Dijkstra",
+        "start": "Brandywine Dr, Amherst, MA 01002",
+        "dest": "Rolling Green Drive, Amherst, MA 01002",
+        "mode": "max",
+        "limit": 50,
+        "city": "Amherst"
+    }
     expected_data = \
         {
     "path": [
@@ -526,8 +526,16 @@ def test_post_data(test_client):
         }
     ]
 }
-    # request_json = json.dumps(request_body)
-    actual_response = test_client.post('/route', data = request_body, follow_redirects=True)
+    request_json = json.dumps(request_body)
+
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+        'Accept': mimetype
+    }
+
+    actual_response = test_client.post('/route', data=request_json, headers=headers)
+    print(actual_response)
     # actual_data = actual_response.get_json()
-    assert actual_response==200
+    assert actual_response.status_code==200
 
