@@ -92,7 +92,8 @@ The following table summarizes the time taken by all the algorithms -
 
 
 ### Usability Survey
-https://forms.gle/wEAsN9YZ6NdXAHNX6
+Form - https://forms.gle/wEAsN9YZ6NdXAHNX6
+Responses - https://docs.google.com/forms/d/1R1TiMnTysHbQIQdakXd8ELhCKa3nb-XtgEmYvC6x_ys/edit#responses
 
 ### System Architecture 
 ![System Architecture](./architecture.jpg)
