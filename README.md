@@ -75,6 +75,13 @@ $ coverage html --omit="*src/frontend*,*/test*"
 #### The final output map with the trace of the path: 
 ![image](https://user-images.githubusercontent.com/91640174/144970048-152b0d3a-8ab0-4790-9a2d-d1f611fa7da6.png)
 
+### Algorithm performance 
+The following table summarizes the time taken by all the algorithms - 
+| Algorithm     | A*    | Dijkstra's    |     BFS       |
+| ------------- | ------------- | ------------- | ------------- |
+| Shortest Path  | 1.00  | 1.20  | 1.3627  |
+
+
 ### Code Coverage 
 
 ![image](https://user-images.githubusercontent.com/91640174/144973057-a9dabe8a-b697-4c5a-8731-10d8e36f6c60.png)
