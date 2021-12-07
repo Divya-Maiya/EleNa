@@ -22,10 +22,6 @@ cors = CORS(app)
 # Instantiate controller
 ctr = Controller()
 
-# Open the browser and start server at port 5000
-webbrowser.open('http://localhost:5000', new=2)
-
-
 # Define all routes
 @app.route('/', methods=['GET'])
 @cross_origin()
