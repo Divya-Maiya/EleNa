@@ -89,6 +89,6 @@ The following table summarizes the time taken by all the algorithms -
 ### Usability Survey
 
 ### System Architecture 
-![image](architecture.jpg)
+![System Architecture](./architecture.jpg)
 
 
