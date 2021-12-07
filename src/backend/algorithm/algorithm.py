@@ -1,6 +1,7 @@
 from abc import *
 from src.backend.utils.graph_utils import *
 import networkx as nx
+import logging
 
 """
 Template Design pattern
@@ -71,6 +72,7 @@ class Algorithm(ABC):
         try:
             shortest_path = get_shortest_path(graph, start_node, dest_node, edge_weight="length")
         except:
+            logging.error("Start node is not in the Graph")
             raise Exception("Start node not in Graph")
         shortest_path_length = get_path_length(graph, shortest_path)
         max_path_length = shortest_path_length * (1 + limit)
@@ -98,6 +100,7 @@ class Algorithm(ABC):
     """
     Abstract template method implemented by child classes
     """
+
     @abstractmethod
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight):
         pass

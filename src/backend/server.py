@@ -2,6 +2,8 @@
 Flask server to handle requests from frontend
 Uses controller object
 """
+import logging
+
 from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
 
@@ -62,4 +64,5 @@ def route():
 
 
 if __name__ == "__main__":
+    logging.info("Starting Server")
     app.run()

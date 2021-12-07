@@ -3,6 +3,7 @@ from src.backend.algorithm.dijkstra import Dijkstra
 from src.backend.algorithm.bfs import BFS
 from src.backend.utils.map_utils import convert_path, get_node_from_address
 import osmnx as ox
+import logging
 
 """
 Controller class
@@ -50,6 +51,7 @@ class Controller(object):
 
         # Plot the local graph - for local debugging
         if plot_local == 1:
+            logging.info("Plotting Graph")
             ox.plot_graph_route(graph, path)
 
         return {'path': final_path, 'path_data': path_data}
