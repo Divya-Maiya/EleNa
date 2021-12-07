@@ -39,11 +39,11 @@ class TestAstar(unittest.TestCase):
         limit = 5
 
         astar = AStar()
-        received_min_elevation_path = astar.get_shortest_path(graph, start_node, dest_node, edge_weight='min')
+        received_min_elevation_path = astar.astar(graph, start_node, dest_node, mode='min')
         min_elevation = graph_utils.get_path_elevation(graph, received_min_elevation_path)
         max_path_length = graph_utils.get_path_length(graph, received_min_elevation_path)
 
-        received_shortest_path = astar.get_shortest_path(graph, start_node, dest_node, edge_weight='length')
+        received_shortest_path = astar.astar(graph, start_node, dest_node, mode='length')
         regular_elevation = graph_utils.get_path_elevation(graph, received_shortest_path)
         regular_path_length = graph_utils.get_path_length(graph, received_shortest_path)
         max_length = regular_path_length * (1 + limit)
@@ -63,11 +63,11 @@ class TestAstar(unittest.TestCase):
         limit = 5
 
         astar = AStar()
-        received_min_elevation_path = astar.get_shortest_path(graph, start_node, dest_node, edge_weight='max')
+        received_min_elevation_path = astar.astar(graph, start_node, dest_node, mode='max')
         max_elevation = graph_utils.get_path_elevation(graph, received_min_elevation_path)
         max_path_length = graph_utils.get_path_length(graph, received_min_elevation_path)
 
-        received_shortest_path = astar.get_shortest_path(graph, start_node, dest_node, edge_weight='length')
+        received_shortest_path = astar.astar(graph, start_node, dest_node, mode='length')
         regular_elevation = graph_utils.get_path_elevation(graph, received_shortest_path)
         regular_path_length = graph_utils.get_path_length(graph, received_shortest_path)
         max_length = regular_path_length * (1 + limit)
