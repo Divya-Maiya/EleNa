@@ -76,7 +76,7 @@ class TestDijkstra(unittest.TestCase):
         print("\n")
 
         self.assertLessEqual(max_path_length, max_length)
-        self.assertGreaterEqual(regular_elevation, max_elevation)
+        self.assertGreaterEqual(max_elevation, regular_elevation)
 
 
 if __name__ == '__main__':

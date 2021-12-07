@@ -51,6 +51,6 @@ class BFS(Algorithm):
         :return: Optimized shortest path
         """
         try:
-            return self.get_shortest_path(self, graph, start_node, dest_node)
+            return self.get_shortest_path(graph, start_node, dest_node)
         except:
             raise Exception("Start node not in graph")
