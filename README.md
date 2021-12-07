@@ -32,6 +32,8 @@ $ npm start
 Upon successful execution of the above commands, a browser window should open navigated to `http://localhost:3000` and should display the screen mentioned in the Output/Screenshots section of this ReadME. 
 
 ## How to test the Project
+For testing, **Mockito**, **unittest** and **pytest** frameworks are used.
+
 To run all unit tests, run the following command 
 ```
 $ cd test
@@ -76,4 +78,6 @@ $ coverage html --omit="*src/frontend*,*/test*"
 ### Code Coverage 
 
 ![image](https://user-images.githubusercontent.com/91640174/144973057-a9dabe8a-b697-4c5a-8731-10d8e36f6c60.png)
+
+### Usability Survey
 
