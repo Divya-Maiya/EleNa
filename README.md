@@ -20,7 +20,7 @@ To get the entire application to work, start by running the backend by executing
 ```
 $ python server.py
 ```
-Upon successful execution of the above command, a Python backend server should be runnin on port 5000. 
+Upon successful execution of the above command, a Python backend server should be running.
 
 To get the UI for the project, run the following: 
 ```
@@ -42,8 +42,24 @@ $ cd ..
 ## Code Coverage Statistics
 To get the code coverage related statistics, please run the following in `EleNa/` 
 ```
-$ coverage run --source=src -m unittest discover -s test && coverage report
+$ coverage run -a -m --source=src/ --omit="*src/frontend*,*/test*" pytest -v -m unittests
+$ coverage report -m  --omit="*src/frontend*,*/test*"
+$ coverage html --omit="*src/frontend*,*/test*"
 ``` 
+
+## Best Programming Practices followed 
+
+1. **Client-Server Architecture**: Interaction between JavaScript frontend and Python backend follows a Client-Server Architecture pattern.
+2. **Model-View-Controller Architecture**: The Python backend follows an Model-View-Controller Architecture Pattern.
+3. **Design Pattern**: A **template design pattern** is used by the algorithms (A*, Dijkstra's and BFS) implemented.
+4. **Modularity / Code Organization**: The code has a package structure that shows modularity.
+5. **Encapsulation**: Encapsulation has been achieved as the code is organized into classes
+6. **Reusability**: Since the code is modular code, it allows for reusability. 
+7. **Test Suite**: A detailed test-suite has been included with a code-coverage of ~85%
+8. **Type Safety / Exception Handling**: Exception handling has been included using try/except/raise blocks. 
+9. **Version Control**: From the beginning of the projected, **Git** has been used as a version control system.
+10. **Debuggability**: Logging statements have been added to ensure debuggability. 
+
 
 ## Results  
 
@@ -59,4 +75,5 @@ $ coverage run --source=src -m unittest discover -s test && coverage report
 
 ### Code Coverage 
 
+![image](https://user-images.githubusercontent.com/91640174/144973057-a9dabe8a-b697-4c5a-8731-10d8e36f6c60.png)
 
