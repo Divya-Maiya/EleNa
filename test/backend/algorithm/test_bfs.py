@@ -1,15 +1,7 @@
 import unittest
 import networkx as nx
 from src.backend.algorithm.bfs import BFS
-import os
-
-from src.backend.utils.map_utils import load_map
-
-
-def test_setup():
-    os.chdir("../..")
-    return load_map("resources/graph_Amherst.pkl", changeDir=1)
-
+from test.helper_utils import test_setup
 
 graph = test_setup()
 

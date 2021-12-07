@@ -2,19 +2,14 @@ import os
 import unittest
 
 import networkx as nx
-from mockito import when, mock, unstub, verify
+from mockito import when, unstub, verify
 
 from src.backend.algorithm.astar import AStar
 from src.backend.algorithm.dijkstra import Dijkstra
 from src.backend.controller.controller import Controller
 from src.backend.model.model import Model
 from src.backend.utils.map_utils import load_map
-
-
-def test_setup():
-    os.chdir("../..")
-    return load_map("resources/graph_Amherst.pkl", changeDir=1)
-
+from test.helper_utils import test_setup
 
 graph = test_setup()
 

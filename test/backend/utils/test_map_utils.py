@@ -5,12 +5,7 @@ import osmnx
 import pickle
 
 from src.backend.utils.map_utils import *
-
-
-def test_setup():
-    os.chdir("../..")
-    return load_map("resources/graph_Amherst.pkl", changeDir=1)
-
+from test.helper_utils import test_setup
 
 graph = test_setup()
 
@@ -41,6 +36,8 @@ class MyTestCase(unittest.TestCase):
         when(pickle).dump(...)
         # when(pickle).dump(...).thenReturn()
 
+        os.chdir("src")
+        # print(os.getcwd())
         get_map("Amherst", "Massachusetts", "USA", "abc", "testFile")
 
         verify(osmnx, times=1).graph_from_place(...)

@@ -1,22 +1,10 @@
-import os
 import unittest
 from mockito import *
-import osmnx as ox
-from osmnx import  *
 import osmnx
-import pickle
-import networkx
 
 from src.backend.utils.map_utils import *
-from src.backend.utils.graph_utils import *
 from src.backend.algorithm.astar import *
-from src.backend.model.model import *
-
-
-def test_setup():
-    os.chdir("../..")
-    return load_map("resources/graph_Amherst.pkl", changeDir=1)
-
+from test.helper_utils import test_setup
 
 graph = test_setup()
 
@@ -40,7 +28,7 @@ class TestGraphUtils(unittest.TestCase):
 
         expected_function = weight_
         obtained_function = shortest_path_optimizer(graph, 'length')
-        self.assertEqual(obtained_function(source_node, neighbor, w), expected_function(source_node,neighbor,w))
+        self.assertEqual(obtained_function(source_node, neighbor, w), expected_function(source_node, neighbor, w))
 
         verify(osmnx, times=1).nearest_nodes(...)
         verify(osmnx, times=1).geocode(...)
@@ -100,7 +88,6 @@ class TestGraphUtils(unittest.TestCase):
         expected_elevation = max(0, graph.nodes[neighbor]['elevation'] - graph.nodes[source_node]['elevation'])
         obtained_elevation = get_path_elevation(graph, shortest_path)
         self.assertEqual(obtained_elevation, expected_elevation)
-
 
 
 if __name__ == '__main__':
