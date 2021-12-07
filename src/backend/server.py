@@ -10,7 +10,7 @@ import webbrowser
 
 from src.backend.controller.controller import Controller
 from src.backend.model.model import Model
-from utils import map_utils
+from src.backend.utils import map_utils
 
 app = Flask(__name__, template_folder='../frontend/public')
 
