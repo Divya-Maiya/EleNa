@@ -13,7 +13,7 @@ def test_post_data(test_client):
         "limit": 50,
         "city": "Amherst"
     }
-    expected_response = \
+    expected_data = \
         {
     "path": [
         [
@@ -516,5 +516,7 @@ def test_post_data(test_client):
 }
     request_json = json.dumps(request_body)
     actual_response = test_client.post('/route', data = request_json,content_type='application/json')
-    assert actual_response.status_code==200
+    actual_data = json.loads(actual_response.get_data(as_text=True))
+    # assert actual_response.status_code==200
+    assert actual_data==expected_data
 
