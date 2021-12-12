@@ -61,7 +61,8 @@ $ coverage html --omit="*src/frontend*,*/test*"
 7. **Test Suite**: A detailed test-suite has been included with a code-coverage of ~85%
 8. **Type Safety / Exception Handling**: Exception handling has been included using try/except/raise blocks. 
 9. **Version Control**: From the beginning of the project, **Git** has been used as a version control system.
-10. **Debuggability**: Logging statements have been added to ensure debuggability. 
+10. **Debuggability**: Logging statements have been added to ensure debuggability.
+11. **UI Usability**: The User interface was tested using manual testing and feedback was taken from various users
 
 
 ## Results  
