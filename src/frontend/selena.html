@@ -312,8 +312,6 @@
                     })
             });
             const content = await rawResponse.json();
-            console.log("api call made");
-            console.log(content);
             calculateStatistics(content);
 
         }
@@ -330,7 +328,6 @@
                 var destination = document.getElementById("searchTextField2").value;
                 var algorithm = document.getElementById("algorithm").value;
                 var deviation = document.getElementById("myRange").value;
-                console.log("?city="+city+"&source="+source+"&destination="+destination+"&algorithm="+algorithm+"&deviation="+deviation+"&optim="+optimizer);
                 window.open('view_route.html'+"?city="+city+"&source="+source+"&destination="+destination+"&algorithm="+algorithm+"&deviation="+deviation+"&optim="+optimizer,'_blank');
             }
             else{
@@ -340,7 +337,6 @@
 
 
         function calculateStatistics(pathInfo){
-        console.log(pathInfo);
         let datas = [];
         let finalDistance = 0;
         let maxGrade = 0;
