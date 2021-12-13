@@ -13,13 +13,265 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous"/>
     <title>Selena - Simple Elevation Navigation</title>
     
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQIIBs6JaQjM3OViYfk_KpuKdnUGZTq-o&v=3.exp&sensor=false&libraries=places"></script>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   </head>
   <body class="bg-light">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="container">
+        <div class="py-4 text-center">
+            <img class="mb-4 d-block mx-auto" src="logo.png" alt="Bootstrap Logo" width="150" height="150">
+            <!-- <h2>Elevation Requirements</h2> -->
+            <!-- <p class="lead">Please enter the Elevation Criteria</p> -->
+        </div>
+
+    </div>
+    
+    <div class="container">
+        <!-- <h4 class="mb-3">Location Information</h4> -->
+        <form novalidate>
+            <div class="row g-1">
+                <div class="row">
+                    <div class="col-sm-3">
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="mb-3">Location Information</h4>
+                    </div>
+            </div>
+            <div class="row g-1 mb-3">
+                <div class="col-sm-3">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <label for="cityLocation" class="form-label">City</label>
+                    <span class="bi bi-pin-map-fill"></span>
+                    <select id="city" class="form-control">
+                        <option value="default" selected disabled hidden>Select City</option>
+                        <option value="Amherst">Amherst</option>
+                        <option value="Boston">Boston</option>
+                    </select>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <!-- <div class="col-sm-4">
+                    
+                </div> 
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="source" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <div class="col-12">
+                    
+                </div> -->
+            </div>
+            <div class="row g-1 mb-3">
+                <div class="col-sm-3">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <label for="sourceLocation" class="form-label">Source</label>
+                        <span class="bi bi-geo-alt-fill">
+                        <input id="searchTextField" type="text" class="form-control" placeholder="Brandywine Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div>
+                <!-- <div class="col-sm-4">
+                    
+                </div> 
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="source" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <div class="col-12">
+                    
+                </div> -->
+            </div>
+            <div class="row g-1 mb-3">
+                <div class="col-sm-3">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="searchTextField2" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <!-- <div class="col-sm-4">
+                    
+                </div> 
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="source" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <div class="col-12">
+                    
+                </div> -->
+            </div>
+
+            <div class="row g-1">
+                <div class="row">
+                    <div class="col-sm-3">
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <hr class="my-3">
+                        <h4 class="mb-3">Algorithm Information</h4>
+                    </div>
+            </div>
+            <div class="row g-1 mb-3">
+                <div class="col-sm-3">
+                    
+                </div>
+                <div class="col-sm-6">
+                    <label for="algorithmType" class="form-label">Algorithm</label>
+                    <span class="bi bi-bezier2"></span>
+                    <select id="algorithm" class="form-control">
+                        <option value="" selected disabled hidden>Select Algorithm</option>
+                        <option value="Dijkstra">Dijkstra</option>
+                        <option value="AStar">AStar</option>
+                    </select>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <!-- <div class="col-sm-4">
+                    
+                </div> 
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="source" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <div class="col-12">
+                    
+                </div> -->
+            </div>
+            <div class="row g-1">
+                <div class="row">
+                    <div class="col-sm-3">
+                        
+                    </div>
+                    <div class="col-sm-4">
+                        
+                        <div class="slidecontainer">
+                            <label for="elevation" class="form-label">Deviation Limit</label>
+                            <span class="bi bi-graph-up"></span>
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                            <p>Value: <span id="demo"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        
+                        <div>
+                            <label for="optimType" class="form-label">Optimisation Type</label>
+                            <!-- <span class="bi bi-graph-up"></span> -->
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary" onclick="optimizerUpdate('min')">Min</button>
+                                <button type="button" class="btn btn-secondary" onclick="optimizerUpdate('Regular')">Regular</button>
+                                <button type="button" class="btn btn-secondary" onclick="optimizerUpdate('max')">Max</button>
+                            </div>
+                            <small class="text-muted">Regular - no elevation criteria</small>
+                        </div>
+                        
+                    </div>
+                    
+            </div>
+            <div class="row g-1">
+                <div class="row">
+                    <div class="col-sm-3">
+                        
+                    </div>
+                    <div class="col-sm-6">
+                        <hr class="my-3">
+                    </div>
+            </div>
+            
+                
+            <!-- <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="sourceLocation" class="form-label">Source</label>
+                        <span class="bi bi-geo-alt-fill">
+                        <input id="source" type="text" class="form-control" placeholder="Brandywine Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+                <div class="col-sm-6">
+                    <label for="destionationLocation" class="form-label">Destination</label>
+                    <span class="bi bi-geo-alt-fill"></span>
+                    <input id="source" type="text" class="form-control" placeholder="Rolling Green Dr, Amherst, MA, USA" required>
+                    <div class="invalid-feedback">Validate Entered Data</div>
+                </div> 
+            </div> -->
+        </form>
+
+    </div>
+    <div class="row text-center">
+        <div class="col-sm-3">
+            
+        </div>
+        <div class="col-sm-6 mb-2">
+            <button type="button" class="btn btn-danger " value='Reset' name='reset' onclick="return resetForm(this.form);">   Reset Fields  </button>
+            <!-- <button type="button" class="btn btn-danger" value='Reset' name='reset' onclick="return resetForm(this.form);">Clear</button> -->
+            <button type="button" id="modal-activate" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#exampleModal">Generate Statistics</button>
+            <button type="button" class="btn btn-success" onclick="visualiseMap()">Visualise Path on Map</button>
+            <!-- <button type="button" class="btn btn-success" onclick="myFunction()">Temp</button> -->
+        </div>
+    </div>
+<!-- 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Launch static backdrop modal
+      </button> -->
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable" style="width:1250px">
+            <div class="modal-content" style="background:white">
+                <div class="modal-header text-center bg-light">
+                <h5 class="modal-title" id="exampleModalLabel">Elevation Path Statistics</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <div class="container"> -->
+                        <div class="div">Total Distance : <p id="distance"></p></div>
+                        
+                        <div >
+                            Steepest incline : <p id="inclineSteep"></p> 
+                        </div>
+                        <div >
+                            Elevation Gain : <p id="elevationGain"></p> 
+                        </div>
+                        <div >
+                            Average Incline : <p id="inclineAvg"></p> 
+                        </div>
+                        Elevation Graph :
+                        <div id="chart_div"></div>
+                        
+                    </div>
+                <!-- </div> -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
   </body>
 </html>
