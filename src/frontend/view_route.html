@@ -7,12 +7,502 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+#container { width:500px; height : 500px}
+</style>
 </head>
 <body>
 <div id="container">
 <div id="map"></div>
 <div>
+<script>
+// 	var apiUrl = 'http://127.0.0.1:5000/route';
+//    fetch(apiUrl).then(response => {
+//      return response.json();
+//    }).then(data => {
+//      console.log(data);
+//     }).catch(err => {
+//     });
+
+(async () => {const queryString = window.location.search;
+    // console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    var city = urlParams.get('city');
+    var source = urlParams.get('source');
+    var dest = urlParams.get('destination');
+    var algorithm = urlParams.get('algorithm');
+    var deviation = parseInt(urlParams.get('deviation'));
+    var optim = urlParams.get('optim');
+  const rawResponse = await fetch('http://127.0.0.1:5000/route', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        
+        "algorithm": algorithm,
+        "start": source,
+        "dest": dest,
+        "mode": optim,
+        "limit": deviation,
+        "city": city
+        })
+  });
+  const content = await rawResponse.json();
+
+  console.log(content.path);
+
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpcmFna2FtYXRoIiwiYSI6ImNrd3RyanU4bDB2dmwydnNlY2tsN3g0cjYifQ.aBdHCXboOX8iwQhWRIn_GA';
+	
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: content.path[0], 
+        zoom: 13
+    });
+
+    map.on('load', () => {
+        map.addSource('route', {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'properties': {},
+                'geometry': {
+                    'type': 'LineString',
+                    'coordinates': content.path
+                }
+            }
+        });
+        map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': 'route',
+            'layout': {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            'paint': {
+                'line-color': '#888',
+                'line-width': 8
+            }
+        });
+    });
+})();
+	
+ 	var data = {
+     "path": [
+         [
+             -72.5340336,
+             42.3065024
+         ],
+         [
+             -72.529507,
+             42.305842
+         ],
+         [
+             -72.530835,
+             42.314102
+         ],
+         [
+             -72.5302102,
+             42.3162496
+         ],
+         [
+             -72.5290128,
+             42.318066
+         ],
+         [
+             -72.5276673,
+             42.3186634
+         ],
+         [
+             -72.5273994,
+             42.318737
+         ],
+         [
+             -72.5263526,
+             42.3191833
+         ],
+         [
+             -72.526089,
+             42.3192102
+         ],
+         [
+             -72.5259943,
+             42.319436
+         ],
+         [
+             -72.5257466,
+             42.3202211
+         ],
+         [
+             -72.524846,
+             42.3225177
+         ],
+         [
+             -72.524758,
+             42.32331
+         ],
+         [
+             -72.523569,
+             42.332674
+         ],
+         [
+             -72.523375,
+             42.334335
+         ],
+         [
+             -72.521312,
+             42.337956
+         ],
+         [
+             -72.520176,
+             42.340028
+         ],
+         [
+             -72.516127,
+             42.340087
+         ],
+         [
+             -72.514235,
+             42.340124
+         ],
+         [
+             -72.513206,
+             42.340141
+         ],
+         [
+             -72.5097413,
+             42.3402215
+         ],
+         [
+             -72.504612,
+             42.340307
+         ],
+         [
+             -72.504604,
+             42.340729
+         ],
+         [
+             -72.504608,
+             42.341084
+         ],
+         [
+             -72.504628,
+             42.342192
+         ],
+         [
+             -72.5043174,
+             42.3432864
+         ],
+         [
+             -72.5041533,
+             42.3469954
+         ],
+         [
+             -72.5041924,
+             42.3507494
+         ],
+         [
+             -72.5044974,
+             42.3565354
+         ],
+         [
+             -72.5035754,
+             42.3639034
+         ],
+         [
+             -72.499263,
+             42.363022
+         ],
+         [
+             -72.498899,
+             42.364389
+         ],
+         [
+             -72.496316,
+             42.363813
+         ],
+         [
+             -72.492426,
+             42.366246
+         ],
+         [
+             -72.4897726,
+             42.3641006
+         ],
+         [
+             -72.4890161,
+             42.3632273
+         ],
+         [
+             -72.488204,
+             42.36229
+         ],
+         [
+             -72.487822,
+             42.361811
+         ],
+         [
+             -72.4876506,
+             42.3616022
+         ],
+         [
+             -72.4874536,
+             42.3618492
+         ],
+         [
+             -72.485007,
+             42.362391
+         ]
+     ],
+     "path_data": [
+         {
+             "elevation": 163.306,
+             "grade": 0,
+             "length": 402.95700000000005
+         },
+         {
+             "elevation": 158.767,
+             "grade": 0,
+             "length": 979.5079999999999
+         },
+         {
+             "elevation": 89.973,
+             "grade": 0,
+             "length": 244.59300000000002
+         },
+         {
+             "elevation": 82.675,
+             "grade": 0.001,
+             "length": 230.169
+         },
+         {
+             "elevation": 82.943,
+             "grade": 0,
+             "length": 129.88
+         },
+         {
+             "elevation": 78.947,
+             "grade": 0,
+             "length": 24.718
+         },
+         {
+             "elevation": 78.405,
+             "grade": 0,
+             "length": 100.363
+         },
+         {
+             "elevation": 74.55,
+             "grade": 0,
+             "length": 22.790999999999997
+         },
+         {
+             "elevation": 73.915,
+             "grade": 0,
+             "length": 27.968
+         },
+         {
+             "elevation": 72.255,
+             "grade": 0,
+             "length": 89.679
+         },
+         {
+             "elevation": 71.149,
+             "grade": 0,
+             "length": 268.15700000000004
+         },
+         {
+             "elevation": 63.032,
+             "grade": 0,
+             "length": 88.396
+         },
+         {
+             "elevation": 61.902,
+             "grade": 0,
+             "length": 1045.965
+         },
+         {
+             "elevation": 58.089,
+             "grade": 0,
+             "length": 185.382
+         },
+         {
+             "elevation": 56.709,
+             "grade": 0,
+             "length": 440.97700000000003
+         },
+         {
+             "elevation": 48.948,
+             "grade": 0.003,
+             "length": 248.958
+         },
+         {
+             "elevation": 49.797,
+             "grade": 0.002,
+             "length": 332.88300000000004
+         },
+         {
+             "elevation": 50.371,
+             "grade": 0,
+             "length": 155.561
+         },
+         {
+             "elevation": 48.519,
+             "grade": 0.001,
+             "length": 84.595
+         },
+         {
+             "elevation": 48.581,
+             "grade": 0.008,
+             "length": 284.973
+         },
+         {
+             "elevation": 50.894,
+             "grade": 0.045,
+             "length": 421.721
+         },
+         {
+             "elevation": 69.78,
+             "grade": 0.003,
+             "length": 46.929
+         },
+         {
+             "elevation": 69.926,
+             "grade": 0,
+             "length": 39.476
+         },
+         {
+             "elevation": 69.239,
+             "grade": 0,
+             "length": 123.215
+         },
+         {
+             "elevation": 66.617,
+             "grade": 0,
+             "length": 124.593
+         },
+         {
+             "elevation": 63.222,
+             "grade": 0,
+             "length": 412.71500000000003
+         },
+         {
+             "elevation": 61.535,
+             "grade": 0,
+             "length": 418.01
+         },
+         {
+             "elevation": 59.412,
+             "grade": 0,
+             "length": 644.736
+         },
+         {
+             "elevation": 55.214,
+             "grade": 0,
+             "length": 823.741
+         },
+         {
+             "elevation": 53.941,
+             "grade": 0,
+             "length": 367.617
+         },
+         {
+             "elevation": 51.169,
+             "grade": 0.007,
+             "length": 155.87099999999998
+         },
+         {
+             "elevation": 52.244,
+             "grade": 0,
+             "length": 235.498
+         },
+         {
+             "elevation": 51.798,
+             "grade": 0.002,
+             "length": 418.863
+         },
+         {
+             "elevation": 52.551,
+             "grade": 0,
+             "length": 323.2459999999999
+         },
+         {
+             "elevation": 49.602,
+             "grade": 0.031,
+             "length": 115.803
+         },
+         {
+             "elevation": 53.196,
+             "grade": 0.027,
+             "length": 123.755
+         },
+         {
+             "elevation": 56.518,
+             "grade": 0.017,
+             "length": 61.822
+         },
+         {
+             "elevation": 57.545,
+             "grade": 0.012,
+             "length": 27.157
+         },
+         {
+             "elevation": 57.881,
+             "grade": 0.005,
+             "length": 31.880000000000003
+         },
+         {
+             "elevation": 58.048,
+             "grade": 0.038,
+             "length": 213.68900000000002
+         },
+         {
+             "elevation": 66.086,
+             "length": 0
+         }
+     ]
+ }
+ console.log(data.path);
+
+ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpcmFna2FtYXRoIiwiYSI6ImNrd3RyanU4bDB2dmwydnNlY2tsN3g0cjYifQ.aBdHCXboOX8iwQhWRIn_GA';
+
+ const map = new mapboxgl.Map({
+     container: 'map',
+     style: 'mapbox://styles/mapbox/streets-v11',
+     center: [-72.5340336, 42.3065024], 
+     zoom: 13
+ });
+
+ map.on('load', () => {
+     map.addSource('route', {
+         'type': 'geojson',
+         'data': {
+             'type': 'Feature',
+             'properties': {},
+             'geometry': {
+                 'type': 'LineString',
+                 'coordinates': data.path
+             }
+         }
+     });
+     map.addLayer({
+         'id': 'route',
+         'type': 'line',
+         'source': 'route',
+         'layout': {
+             'line-join': 'round',
+             'line-cap': 'round'
+         },
+         'paint': {
+             'line-color': '#888',
+             'line-width': 8
+         }
+     });
+ });
 </script>
 
 </body>
