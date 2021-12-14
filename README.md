@@ -33,7 +33,7 @@ Eg: export PYTHONPATH="${PYTHONPATH}:/Users/divyamaiya/IdeaProjects/cs520/elena/
 $ cd src/backend
 $ python server.py
 ```
-Upon successful execution of the above command, a Python backend server should be running.
+Upon successful execution of the above command, a Flask backend server should be running.
 
 **Frontend**
 
@@ -136,7 +136,6 @@ The following table summarizes the time taken by all the algorithms -
 
 ### Usability Survey
 Form - https://forms.gle/wEAsN9YZ6NdXAHNX6
-Responses - https://docs.google.com/forms/d/1R1TiMnTysHbQIQdakXd8ELhCKa3nb-XtgEmYvC6x_ys/edit#responses
 
 ### System Architecture 
 ![image](https://user-images.githubusercontent.com/91640174/145915132-52f8aa36-34dd-4ad1-b56e-eb6360a02ead.png)
