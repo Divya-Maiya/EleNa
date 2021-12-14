@@ -3,7 +3,7 @@ import unittest
 from src.backend.model.model import Model
 
 
-class MyTestCase(unittest.TestCase):
+class TestModel(unittest.TestCase):
     def test_model_setters(self):
         mode = "max"
         source = "source"

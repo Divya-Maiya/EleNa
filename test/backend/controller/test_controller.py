@@ -1,4 +1,3 @@
-import os
 import unittest
 
 import networkx as nx
@@ -8,13 +7,12 @@ from src.backend.algorithm.astar import AStar
 from src.backend.algorithm.dijkstra import Dijkstra
 from src.backend.controller.controller import Controller
 from src.backend.model.model import Model
-from src.backend.utils.map_utils import load_map
 from test.helper_utils import test_setup
 
 graph = test_setup()
 
 
-class MyTestCase(unittest.TestCase):
+class TestController(unittest.TestCase):
     global graph
 
     def test_handle_request(self):

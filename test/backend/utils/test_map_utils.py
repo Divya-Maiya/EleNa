@@ -10,7 +10,7 @@ from test.helper_utils import test_setup
 graph = test_setup()
 
 
-class MyTestCase(unittest.TestCase):
+class TestMapUtils(unittest.TestCase):
     global graph
 
     def test_get_geocode(self):
@@ -34,10 +34,8 @@ class MyTestCase(unittest.TestCase):
         when(osmnx).add_edge_grades(...).thenReturn(graph)
 
         when(pickle).dump(...)
-        # when(pickle).dump(...).thenReturn()
 
         os.chdir("../src")
-        print(os.getcwd())
         get_map("Amherst", "Massachusetts", "USA", "abc", "testFile")
 
         verify(osmnx, times=1).graph_from_place(...)

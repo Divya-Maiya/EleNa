@@ -1,8 +1,4 @@
-import os
-
-from flask import json
 from flask import *
-from test.helper_utils import test_setup
 from mockito import when
 from src.backend.utils.map_utils import load_map
 
@@ -536,6 +532,6 @@ def test_post_data(test_client):
 
     actual_response = test_client.post('/route', data=request_json, headers=headers)
     print(actual_response)
-    # actual_data = actual_response.get_json()
+
     assert actual_response.status_code==200
 
