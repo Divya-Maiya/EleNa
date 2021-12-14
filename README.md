@@ -66,8 +66,8 @@ $ open selena.html
 Note: While entering addresses in the UI, please use street addresses with zip code. This is essential for the application to run successfully. 
 Examples of addresses that have been tested: 
 1. Rolling Green Drive, Amherst, MA 01002, USA
-2. Brandywine Apartments, Amherst, MA 01002, USA
-3. Northeastern University, Boston, MA 02115, USA
+2. Brandywine, Amherst, MA 01002, USA
+3. Northeastern University, Huntington Avenue, Boston, MA 02115, USA
 4. Boston University, Boston, MA 02215, USA
 
 ## How to test the Project
@@ -92,14 +92,6 @@ $ cd test
 $ python -m unittest
 $ cd ..
 ```
-
-## Code Coverage Statistics
-To get the code coverage related statistics, please run the following in `EleNa/` 
-```
-$ coverage run -a -m --source=src/ --omit="*src/frontend*,*/test*" pytest -v -m unittests
-$ coverage report -m  --omit="*src/frontend*,*/test*"
-$ coverage html --omit="*src/frontend*,*/test*"
-``` 
 
 ## Best Programming Practices followed 
 1. **Client-Server Architecture**: Interaction between JavaScript frontend and Python backend follows a Client-Server Architecture pattern.
