@@ -2,7 +2,7 @@
 
 
 ## Clone the project
-1. Navigate to the folder where your project needs to be stored and run the following commands:
+Navigate to the folder where your project needs to be stored and run the following commands:
 
 ```
 $ git clone https://github.com/Divya-Maiya/EleNa.git
