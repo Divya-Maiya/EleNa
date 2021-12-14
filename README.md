@@ -1,42 +1,83 @@
 # Simplified Elevation Navigation
 
 
-### Download and Install Dependencies 
-1. Navigate to the folder where your project folder needs to be hosted and run the following commands:
+### Clone the project
+1. Navigate to the folder where your project needs to be stored and run the following commands:
 
 ```
 $ git clone https://github.com/Divya-Maiya/EleNa.git
 $ cd EleNa
 ```
 
-### Requirements 
+### Requirements - Download and Install Dependencies 
 To download the required requirements for this project, run the following
 ```
 $ pip install -r requirements.txt
 ```
 
 ### How to run the Project
-1. Start by running the backend by executing the following commmands: 
+1. Start by bringing up the backend server by executing the following commmands: 
 
 ```
+$ pwd
+```
+Use the path obtained to populate and run the below command
+```
+$ export PYTHONPATH="${PYTHONPATH}:ABSOLUTE_PATH_TO_PROJECT_DIRECTORY"
+```
+
+Eg: export PYTHONPATH="${PYTHONPATH}:/Users/divyamaiya/IdeaProjects/cs520/elena/EleNa"
+
+```
+$ cd src/backend
 $ python server.py
 ```
 Upon successful execution of the above command, a Python backend server should be running.
 
-2. To get the UI for the project, run the following: 
+2. To open the UI for the project, run the following in the root directory in a separate terminal: 
+
 ```
-$ cd src/frontend
-$ npm install
-$ npm start
+$ pwd
+```
+Use the path obtained to populate and run the below command
+```
+$ export PYTHONPATH="${PYTHONPATH}:ABSOLUTE_PATH_TO_PROJECT_DIRECTORY"
 ```
 
-3. You should be able to see a browser window open to `http://localhost:3000` and should display the screen mentioned in the Output/Screenshots section of this ReadME. 
+Eg: export PYTHONPATH="${PYTHONPATH}:/Users/divyamaiya/IdeaProjects/cs520/elena/EleNa"
+```
+$ cd src/frontend
+```
+For windows:
+```
+$ start selena.html
+```
+
+For Mac:
+```
+$ open selena.html
+```
+
+3. You should be able to see a browser window open the UI and the displayed screen should look like the one mentioned in the Output/Screenshots section of this ReadME. 
 
 
 ## How to test the Project
 For testing, **Mockito**, **unittest** and **pytest** frameworks are used.
 
-To run all unit tests, run the following command 
+To run all unit tests, run the following commands from the root directory
+
+If running in a new terminal, please run the follwoing commands first:
+```
+$ pwd
+```
+Use the path obtained to populate and run the below command
+```
+$ export PYTHONPATH="${PYTHONPATH}:ABSOLUTE_PATH_TO_PROJECT_DIRECTORY"
+```
+
+Eg: export PYTHONPATH="${PYTHONPATH}:/Users/divyamaiya/IdeaProjects/cs520/elena/EleNa"
+```
+
 ```
 $ cd test
 $ python -m unittest
