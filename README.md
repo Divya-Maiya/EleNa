@@ -1,5 +1,7 @@
 # Simplified Elevation Navigation
 
+## Demo and Code Walkthrough
+The demo and code walkthrough of the project can be found here - https://drive.google.com/drive/folders/1Sjm5z_v_EfVoUKlxqfe60roCwewTEJ-A?usp=sharing
 
 ## Clone the project
 Navigate to the folder where your project needs to be stored and run the following commands:
