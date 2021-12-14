@@ -1,6 +1,9 @@
 from src.backend.algorithm.algorithm import Algorithm
 import logging
 
+"""
+To get the shortest path using the BFS Algorithm
+"""
 
 class BFS(Algorithm):
     def get_shortest_path(self, graph, start_node, dest_node, edge_weight='length'):
