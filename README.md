@@ -1,7 +1,7 @@
 # Simplified Elevation Navigation
 
 
-### Clone the project
+## Clone the project
 1. Navigate to the folder where your project needs to be stored and run the following commands:
 
 ```
@@ -9,13 +9,14 @@ $ git clone https://github.com/Divya-Maiya/EleNa.git
 $ cd EleNa
 ```
 
-### Requirements - Download and Install Dependencies 
+## Requirements - Download and Install Dependencies 
 To download the required requirements for this project, run the following
 ```
 $ pip install -r requirements.txt
 ```
 
-### How to run the Project
+## How to run the Project
+**Backend**
 1. Start by bringing up the backend server by executing the following commmands: 
 
 ```
@@ -33,6 +34,8 @@ $ cd src/backend
 $ python server.py
 ```
 Upon successful execution of the above command, a Python backend server should be running.
+
+**Frontend**
 
 2. To open the UI for the project, run the following in the root directory in a separate terminal: 
 
@@ -60,6 +63,11 @@ $ open selena.html
 
 3. You should be able to see a browser window open the UI and the displayed screen should look like the one mentioned in the Output/Screenshots section of this ReadME. 
 
+Note: While entering addresses in the UI, please use street addresses with zip code. This is essential for the application to run successfully. 
+Examples of addresses that have been tested: 
+1. Rolling Green Drive, Amherst, MA 01002, USA
+2. Brandywine Apartments, Amherst, MA 01002, USA
+3. 
 
 ## How to test the Project
 For testing, **Mockito**, **unittest** and **pytest** frameworks are used.
@@ -76,7 +84,7 @@ $ export PYTHONPATH="${PYTHONPATH}:ABSOLUTE_PATH_TO_PROJECT_DIRECTORY"
 ```
 
 Eg: export PYTHONPATH="${PYTHONPATH}:/Users/divyamaiya/IdeaProjects/cs520/elena/EleNa"
-```
+
 
 ```
 $ cd test
