@@ -7,8 +7,6 @@ import logging
 Template Design pattern
 Abstract class for all algorithms to implement
 """
-
-
 class Algorithm(ABC):
     # Method returns the path of maximum elevation.
     def maximum_elevation(self, graph, start_node, dest_node, limit, get_shortest_path):
