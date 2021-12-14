@@ -47,8 +47,6 @@ class Controller(object):
 
         final_path, path_data = convert_path(graph, path)
 
-        # print(path_data)
-
         # Plot the local graph - for local debugging
         if plot_local == 1:
             logging.info("Plotting Graph")
