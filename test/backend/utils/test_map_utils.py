@@ -36,8 +36,8 @@ class MyTestCase(unittest.TestCase):
         when(pickle).dump(...)
         # when(pickle).dump(...).thenReturn()
 
-        os.chdir("src")
-        # print(os.getcwd())
+        os.chdir("../src")
+        print(os.getcwd())
         get_map("Amherst", "Massachusetts", "USA", "abc", "testFile")
 
         verify(osmnx, times=1).graph_from_place(...)
