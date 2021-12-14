@@ -146,6 +146,7 @@ Form - https://forms.gle/wEAsN9YZ6NdXAHNX6
 Responses - https://docs.google.com/forms/d/1R1TiMnTysHbQIQdakXd8ELhCKa3nb-XtgEmYvC6x_ys/edit#responses
 
 ### System Architecture 
-![System Architecture](./architecture.jpg)
+![image](https://user-images.githubusercontent.com/91640174/145915132-52f8aa36-34dd-4ad1-b56e-eb6360a02ead.png)
+
 
 
