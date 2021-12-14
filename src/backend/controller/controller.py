@@ -10,8 +10,6 @@ Controller class
  - Handles the requests received by the server
  - Has-a model object
 """
-
-
 class Controller(object):
 
     def _init_(self):
