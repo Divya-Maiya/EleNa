@@ -10,7 +10,7 @@ Abstract class for all algorithms to implement
 
 
 class Algorithm(ABC):
-
+    # Method returns the path of maximum elevation.
     def maximum_elevation(self, graph, start_node, dest_node, limit, get_shortest_path):
         """
         Find route with max elevation
@@ -57,7 +57,8 @@ class Algorithm(ABC):
 
         max_path.append(dest_node)
         return max_path
-
+    
+    # Method returns the path of minimum elevation.
     def minimum_elevation(self, graph, start_node, dest_node, limit, get_shortest_path):
         """
         Find route with min elevation
