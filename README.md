@@ -67,7 +67,8 @@ Note: While entering addresses in the UI, please use street addresses with zip c
 Examples of addresses that have been tested: 
 1. Rolling Green Drive, Amherst, MA 01002, USA
 2. Brandywine Apartments, Amherst, MA 01002, USA
-3. 
+3. Northeastern University, Boston, MA 02115, USA
+4. Boston University, Boston, MA 02215, USA
 
 ## How to test the Project
 For testing, **Mockito**, **unittest** and **pytest** frameworks are used.
